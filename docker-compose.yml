@@ -1,0 +1,152 @@
+version: '3'
+services:
+
+  # PHP 5.6
+
+  # php56-fpm-alpine-base:
+  #   build:
+  #     context: ./5.6/alpine/fpm
+  #     dockerfile: base.Dockerfile
+  #   image: my127/php:5.6-fpm-alpine
+
+  # php56-fpm-alpine-console:
+  #   build:
+  #     context: ./5.6/alpine/fpm
+  #     dockerfile: console.Dockerfile
+  #   image: my127/php:5.6-fpm-alpine-console
+  #   depends_on:
+  #     - php56-fpm-alpine-base
+
+  php56-fpm-stretch-base:
+    build:
+      context: ./5.6/stretch/fpm
+      dockerfile: base.Dockerfile
+    image: my127/php:5.6-fpm-stretch
+
+  php56-fpm-stretch-console:
+    build:
+      context: ./5.6/stretch/fpm
+      dockerfile: console.Dockerfile
+    image: my127/php:5.6-fpm-stretch-console
+    depends_on:
+      - php56-fpm-stretch-base
+
+  # PHP 7.0
+
+  # php70-fpm-alpine-base:
+  #   build:
+  #     context: ./7.0/alpine/fpm
+  #     dockerfile: base.Dockerfile
+  #   image: my127/php:7.0-fpm-alpine
+
+  # php70-fpm-alpine-console:
+  #   build:
+  #     context: ./7.0/alpine/fpm
+  #     dockerfile: console.Dockerfile
+  #   image: my127/php:7.0-fpm-alpine-console
+  #   depends_on:
+  #     - php70-fpm-alpine-base
+
+  php70-fpm-stretch-base:
+    build:
+      context: ./7.0/stretch/fpm
+      dockerfile: base.Dockerfile
+    image: my127/php:7.0-fpm-stretch
+
+  php70-fpm-stretch-console:
+    build:
+      context: ./7.0/stretch/fpm
+      dockerfile: console.Dockerfile
+    image: my127/php:7.0-fpm-stretch-console
+    depends_on:
+      - php70-fpm-stretch-base
+
+  # PHP 7.1
+
+  # php71-fpm-alpine-base:
+  #   build:
+  #     context: ./7.1/alpine/fpm
+  #     dockerfile: base.Dockerfile
+  #   image: my127/php:7.1-fpm-alpine
+
+  # php71-fpm-alpine-console:
+  #   build:
+  #     context: ./7.1/alpine/fpm
+  #     dockerfile: console.Dockerfile
+  #   image: my127/php:7.1-fpm-alpine-console
+  #   depends_on:
+  #     - php71-fpm-alpine-base
+
+  php71-fpm-stretch-base:
+    build:
+      context: ./7.1/stretch/fpm
+      dockerfile: base.Dockerfile
+    image: my127/php:7.1-fpm-stretch
+
+  php71-fpm-stretch-console:
+    build:
+      context: ./7.1/stretch/fpm
+      dockerfile: console.Dockerfile
+    image: my127/php:7.1-fpm-stretch-console
+    depends_on:
+      - php71-fpm-stretch-base
+
+  # PHP 7.2
+
+  # php72-fpm-alpine-base:
+  #   build:
+  #     context: ./7.2/alpine/fpm
+  #     dockerfile: base.Dockerfile
+  #   image: my127/php:7.2-fpm-alpine
+
+  # php72-fpm-alpine-console:
+  #   build:
+  #     context: ./7.2/alpine/fpm
+  #     dockerfile: console.Dockerfile
+  #   image: my127/php:7.2-fpm-alpine-console
+  #   depends_on:
+  #     - php72-fpm-alpine-base
+
+  php72-fpm-stretch-base:
+    build:
+      context: ./7.2/stretch/fpm
+      dockerfile: base.Dockerfile
+    image: my127/php:7.2-fpm-stretch
+
+  php72-fpm-stretch-console:
+    build:
+      context: ./7.2/stretch/fpm
+      dockerfile: console.Dockerfile
+    image: my127/php:7.2-fpm-stretch-console
+    depends_on:
+      - php72-fpm-stretch-base
+
+  # PHP 7.3
+
+  # php73-fpm-alpine-base:
+  #   build:
+  #     context: ./7.3/alpine/fpm
+  #     dockerfile: base.Dockerfile
+  #   image: my127/php:7.3-fpm-alpine
+
+  # php73-fpm-alpine-console:
+  #   build:
+  #     context: ./7.3/alpine/fpm
+  #     dockerfile: console.Dockerfile
+  #   image: my127/php:7.3-fpm-alpine-console
+  #   depends_on:
+  #     - php73-fpm-alpine-base
+
+  php73-fpm-stretch-base:
+    build:
+      context: ./7.3/stretch/fpm
+      dockerfile: base.Dockerfile
+    image: my127/php:7.3-fpm-stretch
+
+  php73-fpm-stretch-console:
+    build:
+      context: ./7.3/stretch/fpm
+      dockerfile: console.Dockerfile
+    image: my127/php:7.3-fpm-stretch-console
+    depends_on:
+      - php73-fpm-stretch-base
