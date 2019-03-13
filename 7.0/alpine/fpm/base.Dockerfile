@@ -44,3 +44,8 @@ RUN apk --update add \
     && apk del \
     autoconf g++ make freetype-dev libjpeg-turbo-dev libpng-dev openssl-dev libxml2-dev libmcrypt-dev libxslt-dev icu-dev libmemcached-dev \
     && rm -rf /var/cache/apk/*
+
+# app
+# ---
+ENV PATH "$PATH:/app/bin"
+WORKDIR /app
