@@ -18,6 +18,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
    patch \
    rsync \
    wget \
+   zip \
    zlib1g-dev \
   # clean \
  && apt-get auto-remove -qq -y \
