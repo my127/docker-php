@@ -18,9 +18,8 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
    nasm \
    patch \
    rsync \
+   unzip \
    wget \
-   zip \
-   zlib1g-dev \
   # clean \
  && apt-get auto-remove -qq -y \
  && apt-get clean \

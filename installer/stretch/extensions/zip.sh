@@ -12,15 +12,15 @@ function install_zip()
 
 function _zip_deps_runtime()
 {
-    install zip
+    install libzip4
 }
 
 function _zip_deps_build()
 {
-    install libzip-dev
+    install zlib1g-dev libzip-dev
 }
 
 function _zip_clean()
 {
-    remove libzip-dev
+    remove zlib1g-dev libzip-dev
 }

@@ -87,7 +87,7 @@ services:
       - php72-fpm-stretch-base
 
   php73-fpm-stretch-console:
-    image: my127/php:5.6-fpm-stretch-console
+    image: my127/php:7.3-fpm-stretch-console
     build:
       context: ./
       dockerfile: console.Dockerfile

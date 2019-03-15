@@ -17,10 +17,10 @@ function _intl_deps_runtime()
 
 function _intl_deps_build()
 {
-    install libicu-dev
+    install icu-devtools libicu-dev
 }
 
 function _intl_clean()
 {
-    remove libicu-dev
+    remove icu-devtools libicu-dev
 }

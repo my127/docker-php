@@ -3,8 +3,6 @@ FROM php:${VERSION}-fpm-stretch
 
 # PHP
 # ---
-ENV PATH "$PATH:/app/bin"
-WORKDIR /app
 COPY installer/stretch /root/installer
 RUN cd /root/installer; ./enable.sh \
   bcmath \
