@@ -14,6 +14,7 @@ RUN cd /root/installer; ./enable.sh \
   opcache \
   pdo_mysql \
   soap \
+  xdebug \
   xsl \
   zip 
 

@@ -12,6 +12,14 @@ services:
       args:
         VERSION: 5.6
 
+  php70-fpm-stretch-base:
+    image: my127/php:7.0-fpm-stretch
+    build:
+      context: ./
+      dockerfile: base.Dockerfile
+      args:
+        VERSION: 7.0
+
   php71-fpm-stretch-base:
     image: my127/php:7.1-fpm-stretch
     build:
@@ -47,6 +55,16 @@ services:
         VERSION: 5.6
     depends_on:
       - php56-fpm-stretch-base
+
+  php70-fpm-stretch-console:
+    image: my127/php:7.0-fpm-stretch-console
+    build:
+      context: ./
+      dockerfile: console.Dockerfile
+      args:
+        VERSION: 7.0
+    depends_on:
+      - php70-fpm-stretch-base
 
   php71-fpm-stretch-console:
     image: my127/php:7.1-fpm-stretch-console

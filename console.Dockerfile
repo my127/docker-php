@@ -26,12 +26,12 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-# user: build
+# User: build
 # -----------
 RUN groupadd --gid 1000 build \
  && useradd --uid 1000 --gid build --shell /bin/bash --create-home build
 
-# tool: frontend - nvm, node, npm, yarn
+# Tool: frontend - nvm, node, npm, yarn
 # -------------------------------------
 ENV NVM_DIR /home/build/.nvm
 USER build
@@ -43,7 +43,7 @@ RUN cd /home/build \
  && npm install -g yarn
 USER root
 
-# tool: composer
+# Tool: composer
 # --------------
 RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/cb19f2aa3aeaa2006c0cd69a7ef011eb31463067/web/installer \
  && php -r " \
@@ -56,7 +56,7 @@ RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url 
     }" \
  && php /tmp/installer.php --no-ansi --install-dir=/usr/bin --filename=composer --version=1.8.4
 
-# tool: composer > hirak/prestissimo
+# Tool: composer > hirak/prestissimo
 # ----------------------------------
 # enables parallel downloading of composer depedencies and massively speeds up the
 # time it takes to run composer install.
