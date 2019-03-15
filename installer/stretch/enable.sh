@@ -3,6 +3,9 @@
 set -e
 set -x
 
+BUILD_DEPS=(autoconf g++ make)
+BUILD_DEPS_CLEAN=()
+
 function main()
 {
     for extension in "$@"
@@ -33,19 +36,21 @@ function bootstrap()
 
     apt-get update -qq
 
-    install \
-      apt-transport-https \
-      autoconf \
-      g++ \
-      make
+    for package in "${BUILD_DEPS[@]}"
+    do
+        if [[ ! -x "$(command -v ${package})" ]]; then
+            install $package
+            BUILD_DEPS_CLEAN+=("${package}")
+        fi
+    done
 }
 
 function clean()
 {
-    remove \
-      autoconf \
-      g++ \
-      make
+    for package in "${BUILD_DEPS_CLEAN[@]}"
+    do
+        remove $package
+    done
 
     apt-get auto-remove -qq -y
     apt-get clean
