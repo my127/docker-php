@@ -1,24 +1,30 @@
-FROM my127/php:5.6-fpm-alpine
+ARG VERSION=7.3
+FROM my127/php:${VERSION}-fpm-stretch
 
-RUN apk --update add \
+RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
+ && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
+ && apt-get update -qq \
+ && DEBIAN_FRONTEND=noninteractive apt-get -qq -y --no-install-recommends install \
   # package dependencies \
-    git \
-    iproute2 \
-    mysql-client \
-    nano \
-    patch \
-    rsync \
-    autoconf \
-    automake \
-    file \
-    g++ \
-    gcc \
-    make \
-    nasm \
-    zlib-dev \
-    linux-headers \
+   autoconf \
+   automake \
+   build-essential \
+   ca-certificates \
+   curl \
+   git \
+   iproute2 \
+   mysql-client \
+   nano \
+   nasm \
+   patch \
+   rsync \
+   wget \
+   zip \
+   zlib1g-dev \
   # clean \
-    && rm -rf /var/cache/apk/*
+ && apt-get auto-remove -qq -y \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 # user: build
 # -----------
@@ -33,7 +39,7 @@ RUN cd /home/build \
  && mkdir .nvm \
  && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash \
  && . /home/build/.nvm/nvm.sh \
- && nvm install -s lts/dubnium \
+ && nvm install lts/dubnium \
  && npm install -g yarn
 USER root
 
