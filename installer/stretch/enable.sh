@@ -18,6 +18,11 @@ function enable()
 {
     local extension="$1"
 
+    if php -m | grep -i "$extension" > /dev/null; then
+        echo "extension ${extension} is already installed."
+        return
+    fi
+
     local installer_file="extensions/${extension}.sh"
     local installer_name="install_${extension}"
 
