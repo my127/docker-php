@@ -18,7 +18,7 @@ function enable()
 {
     local extension="$1"
 
-    if php -m | grep -i "$extension" > /dev/null; then
+    if php -m | grep -i "^${extension}$" > /dev/null; then
         echo "extension ${extension} is already installed."
         return
     fi
