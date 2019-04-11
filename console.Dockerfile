@@ -17,6 +17,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
    nano \
    nasm \
    patch \
+   pv \
    rsync \
    unzip \
    wget \
