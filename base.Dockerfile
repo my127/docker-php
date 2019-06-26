@@ -27,11 +27,12 @@ RUN cd /root/installer; ./enable.sh \
   mcrypt \
   opcache \
   pdo_mysql \
-  sodium \
   soap \
   xdebug \
   xsl \
-  zip
+  zip \
+ && ./reenable.sh \
+   sodium
 
 # App
 # ---

@@ -12,7 +12,7 @@ function main()
 {
     for extension in "$@"
     do
-        enable "$extension"
+        enable_without_check "$extension"
     done
 }
 
