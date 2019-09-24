@@ -11,6 +11,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
    build-essential \
    ca-certificates \
    curl \
+   gettext-base \
    git \
    iproute2 \
    jq \
