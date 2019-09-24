@@ -18,6 +18,7 @@ Used in development for building and interacting with the application with a fam
 * build-tools (autoconf, automake, g++, gcc, make, nasm)
 * composer (1.8.4)
 * curl
+* gettext-base
 * git
 * iproute
 * mysql (client)
