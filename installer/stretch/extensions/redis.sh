@@ -2,6 +2,13 @@
 
 function install_redis()
 {
-    pecl install -o -f redis
+    case "$VERSION" in
+            "5.6")
+                pecl install -o -f redis-2.2.8
+                ;;
+            *)
+                pecl install -o -f redis
+    esac
+
     docker-php-ext-enable redis
 }
