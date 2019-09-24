@@ -10,6 +10,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && DEBIAN_FRONTEND=noninteractive apt-get -qq -y --no-install-recommends install \
   # package dependencies \
    ca-certificates \
+   gettext-base \
    iproute2 \
    supervisor \
   # clean \
