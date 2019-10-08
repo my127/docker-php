@@ -11,5 +11,6 @@ function install_imagick()
 function _imagick_deps_runtime()
 {
     install \
+      imagemagick \
       libmagickwand-dev
 }
