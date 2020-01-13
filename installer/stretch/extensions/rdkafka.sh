@@ -5,7 +5,7 @@ function install_rdkafka()
     _rdkafka_deps_runtime
     _rdkafka_deps_build
 
-    pecl install rdkafka-3.1.3
+    pecl install rdkafka
     docker-php-ext-enable rdkafka
 
     _rdkafka_clean
