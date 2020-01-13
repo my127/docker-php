@@ -2,26 +2,26 @@
 
 function install_rdkafka()
 {
-    _intl_deps_runtime
-    _intl_deps_build
+    _rdkafka_deps_runtime
+    _rdkafka_deps_build
 
     pecl install rdkafka-3.1.3
     docker-php-ext-enable rdkafka
 
-    _intl_clean
+    _rdkafka_clean
 }
 
-function _intl_deps_runtime()
+function _rdkafka_deps_runtime()
 {
-    install librdkafka++1 librdkafka1
+    install -t stretch-backports librdkafka++1 librdkafka1
 }
 
-function _intl_deps_build()
+function _rdkafka_deps_build()
 {
-    install librdkafka-dev
+    install -t stretch-backports librdkafka-dev
 }
 
-function _intl_clean()
+function _rdkafka_clean()
 {
     remove librdkafka-dev
 }
