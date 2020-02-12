@@ -2,6 +2,13 @@
 
 function install_apcu()
 {
-    printf "\n" | pecl install apcu
+
+    case "$VERSION" in
+            "5.6")
+                printf "\n" | pecl install apcu-4.0.11
+                ;;
+            *)
+                printf "\n" | pecl install apcu
+    esac
     docker-php-ext-enable apcu
 }
