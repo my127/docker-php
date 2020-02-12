@@ -18,6 +18,7 @@ function _gmp_deps_runtime()
 function _gmp_deps_build()
 {
     install libgmp-dev
+    ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
 }
 
 function _gmp_clean()
