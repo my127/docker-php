@@ -1,13 +1,21 @@
 language: bash
+
 services:
   - docker
+
+matrix:
+  include:
+    - env: BUILD="php56|php70|php71"
+    - env: BUILD="php72|php73|php74"
+
 script:
   - set -e
-  - docker-compose build
+  - ./build.sh
   - ./test.sh
+
 after_success:
   - |
     if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] ; then
       docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-      docker-compose push
+      docker-compose config --services | grep -E "${BUILD}" | xargs docker-compose push
     fi
