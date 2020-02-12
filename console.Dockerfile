@@ -1,6 +1,8 @@
 ARG VERSION=7.3
-FROM my127/php:${VERSION}-fpm-stretch
+ARG BASEOS=stretch
+FROM my127/php:${VERSION}-fpm-${BASEOS}
 
+ARG BASEOS=stretch
 RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && apt-get update -qq \

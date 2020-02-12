@@ -2,6 +2,7 @@ language: bash
 services:
   - docker
 script:
+  - set -e
   - docker-compose build
   - ./test.sh
 after_success:
