@@ -5,13 +5,12 @@ function install_gd()
     _gd_deps_runtime
     _gd_deps_build
 
-    # docker-php-ext-configure gd \
-    #   --with-gd \
-    #   --with-freetype-dir=/usr/include/ \
-    #   --with-png-dir=/usr/include/ \
-    #   --with-jpeg-dir=/usr/include/
-    #
-    # docker-php-ext-install gd
+    docker-php-ext-configure gd \
+      --enable-gd \
+      --with-freetype \
+      --with-jpeg
+
+    docker-php-ext-install gd
 
     _gd_clean
 }
