@@ -20,10 +20,10 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
    jq \
    nano \
    nasm \
+   openssh-client \
    patch \
    pv \
    rsync \
-   ssh \
    unzip \
    wget \
   # clean \
