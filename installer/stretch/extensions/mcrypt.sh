@@ -15,6 +15,10 @@ function install_mcrypt()
             "7.1")
                 docker-php-ext-install mcrypt
                 ;;
+            "7.4")
+                printf "\n" | pecl install mcrypt-1.0.3
+                docker-php-ext-enable mcrypt
+                ;;
             *)
                 printf "\n" | pecl install mcrypt-1.0.2
                 docker-php-ext-enable mcrypt

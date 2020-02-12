@@ -23,6 +23,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
 # PHP
 # ---
 COPY installer/stretch /root/installer
+COPY "installer/$BASEOS" /root/installer
 RUN cd /root/installer; ./enable.sh \
   bcmath \
   gd \
