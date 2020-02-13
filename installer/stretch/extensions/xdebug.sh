@@ -8,13 +8,13 @@ function install_xdebug()
                 XDEBUG_PACKAGE="xdebug-2.5.5"
                 # Build xdebug manually to avoid a debian compiler bug
                 # https://github.com/docker-library/php/issues/133
-                pushd /usr/src
+                pushd /usr/src || return 1
 
                 curl "https://xdebug.org/files/${XDEBUG_PACKAGE}.tgz" -o "${XDEBUG_PACKAGE}.tgz"
                 echo "72108bf2bc514ee7198e10466a0fedcac3df9bbc5bd26ce2ec2dafab990bf1a4" "${XDEBUG_PACKAGE}.tgz" | sha256sum --check
                 tar -xzvf "${XDEBUG_PACKAGE}.tgz"
 
-                pushd "${XDEBUG_PACKAGE}"
+                pushd "${XDEBUG_PACKAGE}" || return 1
                 phpize
                 ./configure --enable-xdebug
                 make clean
@@ -23,11 +23,11 @@ function install_xdebug()
                 make
                 make test
                 make install
-                popd
+                popd || return 1
 
                 rm -r "${XDEBUG_PACKAGE}" "${XDEBUG_PACKAGE}.tgz"
 
-                popd
+                popd || return 1
 
                 ;;
             "7.0")

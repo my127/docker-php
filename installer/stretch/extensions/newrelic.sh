@@ -7,6 +7,6 @@ function install_newrelic()
     export NR_INSTALL_USE_CP_NOT_LN=1
     export NR_INSTALL_SILENT=1
 
-    /tmp/newrelic-php5-*/newrelic-install install
+    "${/tmp/newrelic-php5-*/newrelic-install}" install
     rm -rf /tmp/newrelic-php5- /tmp/nrinstall
 }
