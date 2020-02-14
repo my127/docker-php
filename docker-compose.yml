@@ -11,6 +11,7 @@ services:
       dockerfile: base.Dockerfile
       args:
         VERSION: 5.6
+        BASEOS: stretch
 
   php70-fpm-stretch-base:
     image: my127/php:7.0-fpm-stretch
@@ -19,6 +20,7 @@ services:
       dockerfile: base.Dockerfile
       args:
         VERSION: 7.0
+        BASEOS: stretch
 
   php71-fpm-stretch-base:
     image: my127/php:7.1-fpm-stretch
@@ -27,6 +29,7 @@ services:
       dockerfile: base.Dockerfile
       args:
         VERSION: 7.1
+        BASEOS: stretch
 
   php72-fpm-stretch-base:
     image: my127/php:7.2-fpm-stretch
@@ -35,6 +38,7 @@ services:
       dockerfile: base.Dockerfile
       args:
         VERSION: 7.2
+        BASEOS: stretch
 
   php73-fpm-stretch-base:
     image: my127/php:7.3-fpm-stretch
@@ -43,6 +47,16 @@ services:
       dockerfile: base.Dockerfile
       args:
         VERSION: 7.3
+        BASEOS: stretch
+
+  php74-fpm-buster-base:
+    image: my127/php:7.4-fpm-buster
+    build:
+      context: ./
+      dockerfile: base.Dockerfile
+      args:
+        VERSION: 7.4
+        BASEOS: buster
 
   # Console Images
 
@@ -53,6 +67,7 @@ services:
       dockerfile: console.Dockerfile
       args:
         VERSION: 5.6
+        BASEOS: stretch
     depends_on:
       - php56-fpm-stretch-base
 
@@ -63,6 +78,7 @@ services:
       dockerfile: console.Dockerfile
       args:
         VERSION: 7.0
+        BASEOS: stretch
     depends_on:
       - php70-fpm-stretch-base
 
@@ -73,6 +89,7 @@ services:
       dockerfile: console.Dockerfile
       args:
         VERSION: 7.1
+        BASEOS: stretch
     depends_on:
       - php71-fpm-stretch-base
 
@@ -83,6 +100,7 @@ services:
       dockerfile: console.Dockerfile
       args:
         VERSION: 7.2
+        BASEOS: stretch
     depends_on:
       - php72-fpm-stretch-base
 
@@ -93,5 +111,17 @@ services:
       dockerfile: console.Dockerfile
       args:
         VERSION: 7.3
+        BASEOS: stretch
     depends_on:
       - php73-fpm-stretch-base
+
+  php74-fpm-buster-console:
+    image: my127/php:7.4-fpm-buster-console
+    build:
+      context: ./
+      dockerfile: console.Dockerfile
+      args:
+        VERSION: 7.4
+        BASEOS: buster
+    depends_on:
+      - php74-fpm-buster-base

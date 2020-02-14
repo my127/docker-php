@@ -1,6 +1,8 @@
 ARG VERSION=7.3
-FROM my127/php:${VERSION}-fpm-stretch
+ARG BASEOS=stretch
+FROM my127/php:${VERSION}-fpm-${BASEOS}
 
+ARG BASEOS=stretch
 RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && apt-get update -qq \
@@ -11,17 +13,17 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
    build-essential \
    ca-certificates \
    curl \
+   default-mysql-client \
    gettext-base \
    git \
    iproute2 \
    jq \
-   mysql-client \
    nano \
    nasm \
+   openssh-client \
    patch \
    pv \
    rsync \
-   ssh \
    unzip \
    wget \
   # clean \
