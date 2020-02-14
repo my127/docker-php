@@ -1,7 +1,9 @@
 #!/bin/bash
 
 function install_xdebug()
-{
+(
+    set -o errexit -o pipefail
+
     local XDEBUG_PACKAGE="xdebug"
     case "$VERSION" in
             "5.6")
@@ -40,4 +42,4 @@ function install_xdebug()
     esac
 
     docker-php-ext-enable xdebug
-}
+)
