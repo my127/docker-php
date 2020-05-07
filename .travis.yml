@@ -6,7 +6,8 @@ services:
 matrix:
   include:
     - env: BUILD="php56|php70|php71"
-    - env: BUILD="php72|php73|php74"
+    - env: BUILD="php72|php73"
+    - env: BUILD="php74"
 
 script:
   - set -e

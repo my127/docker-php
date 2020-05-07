@@ -49,6 +49,15 @@ services:
         VERSION: 7.3
         BASEOS: stretch
 
+  php73-fpm-buster-base:
+    image: my127/php:7.3-fpm-buster
+    build:
+      context: ./
+      dockerfile: base.Dockerfile
+      args:
+        VERSION: 7.3
+        BASEOS: buster
+
   php74-fpm-buster-base:
     image: my127/php:7.4-fpm-buster
     build:
@@ -114,6 +123,17 @@ services:
         BASEOS: stretch
     depends_on:
       - php73-fpm-stretch-base
+
+  php73-fpm-buster-console:
+    image: my127/php:7.3-fpm-buster-console
+    build:
+      context: ./
+      dockerfile: console.Dockerfile
+      args:
+        VERSION: 7.3
+        BASEOS: buster
+    depends_on:
+      - php73-fpm-buster-base
 
   php74-fpm-buster-console:
     image: my127/php:7.4-fpm-buster-console
