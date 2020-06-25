@@ -24,6 +24,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
    nasm \
    openssh-client \
    patch \
+   postgresql-client \
    pv \
    rsync \
    unzip \
