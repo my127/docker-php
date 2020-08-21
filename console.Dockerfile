@@ -1,6 +1,8 @@
 ARG VERSION=7.3
 ARG BASEOS=stretch
 FROM my127/php:${VERSION}-fpm-${BASEOS}
+# upstream is SIGQUIT, cli should be SIGTERM
+STOPSIGNAL SIGTERM
 
 ARG BASEOS=stretch
 RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
