@@ -8,6 +8,7 @@ ARG BASEOS=stretch
 RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && apt-get update -qq \
+ && for i in $(seq 1 8); do mkdir -p "/usr/share/man/man$i"; done \
  && DEBIAN_FRONTEND=noninteractive apt-get -qq -y --no-install-recommends install \
   # package dependencies \
    autoconf \
@@ -32,7 +33,8 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
   # clean \
  && apt-get auto-remove -qq -y \
  && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/* \
+ && for i in $(seq 1 8); do rm -rf "/usr/share/man/man$i"; done
 
 # User: build
 # -----------
