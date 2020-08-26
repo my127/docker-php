@@ -52,7 +52,7 @@ USER root
 
 # Tool: composer
 # --------------
-RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer \
+RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/fb07bd70d93cf733c1c94aef7fc68502f81aca2b/web/installer \
  && php -r " \
     \$signature = '8a6138e2a05a8c28539c9f0fb361159823655d7ad2deecb371b04a83966c61223adc522b0189079e3e9e277cd72b8897'; \
     \$hash = hash('sha384', file_get_contents('/tmp/installer.php')); \
