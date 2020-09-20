@@ -5,7 +5,7 @@ function install_ssh2()
     _ssh2_deps_build
     case "$VERSION" in
         "5.6")
-            printf "\n" | pecl install ssh2-0.1.3
+            printf "\n" | pecl install ssh2-0.13
             ;;
         *)
             # beta release, so need to specify version number
