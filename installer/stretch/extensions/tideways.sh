@@ -26,4 +26,5 @@ function _tideways_deps_build()
 
     echo 'deb https://packages.tideways.com/apt-packages debian main' > /etc/apt/sources.list.d/tideways.list
     curl -L -sS 'https://packages.tideways.com/key.gpg' | apt-key add -
+    apt-get update -qq
 }
