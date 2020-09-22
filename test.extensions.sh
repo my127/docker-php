@@ -4,6 +4,9 @@ set -e
 
 cd /root/installer/
 
+before="$(php -m)$(php -v)"
+echo "Before: $before"
+
 for extension in extensions/*; do
     echo -n "Installing ${extension}..."
     extension_name="${extension%.sh}"
@@ -27,5 +30,6 @@ for extension in extensions/*; do
     exit 1
 done
 
-php -m
-php -v
+after="$(php -m)$(php -v)"
+echo "After: $after"
+diff <(echo "$before") <(echo "$after")
