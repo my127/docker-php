@@ -8,6 +8,11 @@ function install_blackfire()
     fi
 }
 
+function compile_blackfire()
+{
+    install_blackfire
+}
+
 function install_blackfire_probe()
 {
     local version
