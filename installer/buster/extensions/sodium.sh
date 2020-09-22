@@ -8,7 +8,9 @@ function install_sodium()
         compile_sodium
     fi
 
-    docker-php-ext-enable sodium
+    if has_extension sodium; then
+        docker-php-ext-enable sodium
+    fi
 }
 
 function compile_sodium()
