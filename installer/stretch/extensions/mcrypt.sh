@@ -35,7 +35,7 @@ function compile_mcrypt()
 
 function _mcrypt_deps_runtime()
 {
-    install libmcrypt4
+    install libmcrypt4 libltdl7
 }
 
 function _mcrypt_deps_build()
