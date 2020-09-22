@@ -27,6 +27,29 @@ function enable_without_check()
     fi
 }
 
+function compile()
+{
+    local extension="$1"
+    local installer_file="extensions/${extension}.sh"
+    local compile_name="compile_${extension}"
+
+    if [ -f "$installer_file" ]; then
+        # shellcheck source=../extensions/$installer_file
+        declare -F "$installer_name" &>/dev/null || source "$installer_file"
+        "$compile_name"
+    else
+        docker-php-ext-install "$extension"
+        rm "/usr/local/etc/php/conf.d/docker-php-ext-$extension.ini"
+    fi
+}
+
+function has_extension()
+{
+    local EXTENSION="$1"
+    test -f "$(php -r "echo ini_get('extension_dir');")/$EXTENSION.so"
+    return "$?"
+}
+
 function bootstrap()
 {
     echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends

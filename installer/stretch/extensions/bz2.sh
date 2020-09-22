@@ -3,6 +3,13 @@
 function install_bz2()
 {
     _bz2_deps_runtime
+    if ! has_extension bz2; then
+        compile_bz2
+    fi
+}
+
+function compile_bz2()
+{
     _bz2_deps_build
 
     docker-php-ext-install bz2

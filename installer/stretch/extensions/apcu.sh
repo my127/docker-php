@@ -2,7 +2,14 @@
 
 function install_apcu()
 {
+    if ! has_extension acpu; then
+        compile_apcu
+    fi
+    docker-php-ext-enable apcu
+}
 
+function compile_apcu()
+{
     case "$VERSION" in
             "5.6")
                 printf "\n" | pecl install apcu-4.0.11
@@ -10,5 +17,4 @@ function install_apcu()
             *)
                 printf "\n" | pecl install apcu
     esac
-    docker-php-ext-enable apcu
 }
