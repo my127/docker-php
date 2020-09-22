@@ -2,7 +2,7 @@
 
 function install_apcu()
 {
-    if ! has_extension acpu; then
+    if ! has_extension apcu; then
         compile_apcu
     fi
     docker-php-ext-enable apcu
