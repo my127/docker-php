@@ -31,6 +31,8 @@ RUN cd /root/installer; ./enable.sh \
   mcrypt \
   opcache \
   pdo_mysql \
+  pdo_pgsql \
+  pgsql \
   soap \
   xdebug \
   xsl \
