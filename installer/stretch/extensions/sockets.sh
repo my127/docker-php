@@ -2,8 +2,6 @@
 
 function install_sockets()
 {
-    _sockets_deps_runtime
-
     if ! has_extension; then
         compile_sockets
     fi
@@ -13,9 +11,5 @@ function install_sockets()
 
 function compile_sockets()
 {
-    _sockets_deps_build
-
     docker-php-ext-install sockets
-
-    _sockets_clean
 }

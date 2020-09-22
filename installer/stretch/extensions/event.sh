@@ -3,10 +3,19 @@
 function install_event()
 {
     _event_deps_runtime
+
+    if ! has_extension event; then
+        compile_event
+    fi
+
+    docker-php-ext-enable event
+}
+
+function compile_event()
+{
     _event_deps_build
 
     printf "\n" | pecl install event
-    docker-php-ext-enable event
 
     _event_clean
 }

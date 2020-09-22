@@ -2,10 +2,17 @@
 
 function install_xmlrpc()
 {
+    if ! has_extension xmlrpc; then
+        compile_xmlrpc
+    fi
+    docker-php-ext-enable xmlrpc
+}
+
+function compile_xmlrpc()
+{
     _xmlrpc_deps_build
 
     docker-php-ext-install xmlrpc
-    docker-php-ext-enable xmlrpc
 
     _xmlrpc_clean
 }
