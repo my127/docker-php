@@ -3,10 +3,17 @@
 function install_rdkafka()
 {
     _rdkafka_deps_runtime
+    if ! has_extension rdkafka; then
+        compile_rdkafka
+    fi
+    docker-php-ext-enable rdkafka
+}
+
+function compile_rdkafka()
+{
     _rdkafka_deps_build
 
     pecl install rdkafka
-    docker-php-ext-enable rdkafka
 
     _rdkafka_clean
 }

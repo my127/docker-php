@@ -6,6 +6,7 @@ function install_bz2()
     if ! has_extension bz2; then
         compile_bz2
     fi
+    docker-php-ext-enable bz2
 }
 
 function compile_bz2()

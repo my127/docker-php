@@ -6,6 +6,7 @@ function install_gd()
     if ! has_extension gd; then
         compile_gd
     fi
+    docker-php-ext-enable gd
 }
 
 function compile_gd()

@@ -3,6 +3,16 @@
 function install_memcached()
 {
     _memcached_deps_runtime
+
+    if ! has_extension memcached; then
+        compile_memcached
+    fi
+
+    docker-php-ext-enable memcached
+}
+
+function compile_memcached()
+{
     _memcached_deps_build
 
     case "$VERSION" in
@@ -12,8 +22,6 @@ function install_memcached()
             *)
                 printf "\n" | pecl install memcached
     esac
-
-    docker-php-ext-enable memcached
     _memcached_clean
 }
 

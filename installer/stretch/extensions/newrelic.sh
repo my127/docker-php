@@ -11,3 +11,8 @@ function install_newrelic()
     /tmp/newrelic-php5-*/newrelic-install install
     rm -rf /tmp/newrelic-php5-* /tmp/nrinstall*
 }
+
+function compile_newrelic()
+{
+    :
+}

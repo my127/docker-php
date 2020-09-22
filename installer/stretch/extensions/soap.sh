@@ -3,6 +3,14 @@
 function install_soap()
 {
     _soap_deps_runtime
+    if ! has_extension soap; then
+        compile_soap
+    fi
+    docker-php-ext-enable soap
+}
+
+function compile_soap()
+{
     _soap_deps_build
 
     docker-php-ext-install soap
