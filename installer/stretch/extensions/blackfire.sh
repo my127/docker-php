@@ -10,7 +10,7 @@ function install_blackfire()
 
 function compile_blackfire()
 {
-    install_blackfire
+    :
 }
 
 function install_blackfire_probe()
@@ -21,6 +21,7 @@ function install_blackfire_probe()
     mkdir -p /tmp/blackfire
     tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp/blackfire
     mv /tmp/blackfire/blackfire-*.so "$(php -r "echo ini_get('extension_dir');")/blackfire.so"
+    chown root:staff "$(php -r "echo ini_get('extension_dir');")/blackfire.so"
     rm -rf /tmp/blackfire /tmp/blackfire-probe.tar.gz
 }
 
