@@ -35,10 +35,13 @@ function compile()
 
     if [ -f "$installer_file" ]; then
         # shellcheck source=../extensions/$installer_file
-        declare -F "$installer_name" &>/dev/null || source "$installer_file"
+        declare -F "$compile_name" &>/dev/null || source "$installer_file"
         "$compile_name"
     else
         docker-php-ext-install "$extension"
+    fi
+
+    if [ -f "/usr/local/etc/php/conf.d/docker-php-ext-$extension.ini" ]; then
         rm "/usr/local/etc/php/conf.d/docker-php-ext-$extension.ini"
     fi
 }
