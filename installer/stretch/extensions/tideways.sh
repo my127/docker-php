@@ -6,6 +6,11 @@ function install_tideways()
     _tideways_deps_runtime
 }
 
+function compile_tideways()
+{
+    :
+}
+
 function _tideways_deps_runtime()
 {
     local CLI_PACKAGE=''
