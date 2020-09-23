@@ -9,7 +9,9 @@ function enable()
         return
     fi
 
-    enable_without_check "$extension"
+    if ! enable_without_check "$extension"; then
+        return 1
+    fi
 }
 
 function enable_without_check()
@@ -21,9 +23,11 @@ function enable_without_check()
     if [ -f "$installer_file" ]; then
         # shellcheck source=../extensions/$installer_file
         declare -F "$installer_name" &>/dev/null || source "$installer_file"
-        $installer_name
-    else
-        docker-php-ext-install "$extension"
+        if ! "$installer_name"; then
+            return 1
+        fi
+    elif ! docker-php-ext-install "$extension"; then
+        return 1
     fi
 }
 
@@ -36,9 +40,11 @@ function compile()
     if [ -f "$installer_file" ]; then
         # shellcheck source=../extensions/$installer_file
         declare -F "$compile_name" &>/dev/null || source "$installer_file"
-        "$compile_name"
-    else
-        docker-php-ext-install "$extension"
+        if ! "$compile_name"; then
+            return 1
+        fi
+    elif ! docker-php-ext-install "$extension"; then
+        return 1
     fi
 
     if [ -f "/usr/local/etc/php/conf.d/docker-php-ext-$extension.ini" ]; then

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -e -o pipefail
 
 export BUILD_DEPS=(autoconf g++ make)
 export BUILD_DEPS_CLEAN=()

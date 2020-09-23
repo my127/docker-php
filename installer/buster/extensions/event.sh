@@ -15,7 +15,9 @@ function compile_event()
 {
     _event_deps_build
 
-    printf "\n" | pecl install event
+    if ! printf "\n" | pecl install event; then
+        return 1
+    fi
 
     _event_clean
 }
