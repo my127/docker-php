@@ -34,5 +34,7 @@ function _imagick_clean_runtime()
 {
     remove \
       imagemagick \
-      libmagickwand-dev
+      libglib2.0-data \
+      libmagickwand-dev \
+      shared-mime-info
 }
