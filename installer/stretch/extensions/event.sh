@@ -2,11 +2,11 @@
 
 function install_event()
 {
-    _event_deps_runtime
-
     if ! has_extension event; then
         compile_event
     fi
+
+    _event_deps_runtime
 
     docker-php-ext-enable event
 }
@@ -35,6 +35,9 @@ function _event_deps_runtime()
 
 function _event_deps_build()
 {
+    enable \
+      sockets
+
     install \
       libevent-dev \
       libssl-dev
@@ -45,4 +48,8 @@ function _event_clean()
     remove \
       libevent-dev \
       libssl-dev
+
+    if [ -f "/usr/local/etc/php/conf.d/docker-php-ext-sockets.ini" ]; then
+        rm "/usr/local/etc/php/conf.d/docker-php-ext-sockets.ini"
+    fi
 }
