@@ -15,7 +15,11 @@ function main()
         extension_name="${extension%.sh}"
         extension_name="${extension_name#extensions/}"
         echo -n "Installing ${extension}..."
-        compile "$extension_name" > /tmp/ext-install.log 2>&1 || (echo " failure" && cat /tmp/ext-install.log && exit 1)
+        if ! compile "$extension_name" > /tmp/ext-install.log 2>&1; then
+            echo " failure"
+            cat /tmp/ext-install.log
+            exit 1
+        fi
         echo " success"
     done
 }
