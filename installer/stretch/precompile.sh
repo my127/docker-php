@@ -22,6 +22,10 @@ function main()
         fi
         echo " success"
     done
+
+    if [ -f /tmp/ext-install.log ]; then
+        rm /tmp/ext-install.log
+    fi
 }
 
 VERSION="$(echo "$PHP_VERSION" | cut -c 1-3)"
