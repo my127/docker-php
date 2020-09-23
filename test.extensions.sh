@@ -19,7 +19,7 @@ for extension in extensions/*; do
         exit 1
     fi
     # These extensions aren't enabled by default
-    if [ "$extension_name" = 'blackfire' ] || [ "$extension_name" = "newrelic" ] [ "$extension_name" = 'tideways' ]; then
+    if [ "$extension_name" = 'blackfire' ] || [ "$extension_name" = "newrelic" ] || [ "$extension_name" = 'tideways' ]; then
         echo ' success'
         continue
     fi
@@ -39,5 +39,5 @@ for extension in extensions/*; do
 done
 
 after="$(php -m)$(php -v)"
-echo "After: $after"
-diff <(echo "$before") <(echo "$after")
+echo "After: $after\nDiff:"
+diff -u <(echo "$before") <(echo "$after") || true
