@@ -12,6 +12,7 @@ function main()
 {
     for extension in "$@"
     do
+        compile "$extension"
         enable_without_check "$extension"
     done
 }
