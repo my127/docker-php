@@ -5,6 +5,7 @@ FROM my127/php:${VERSION}-fpm-${BASEOS}
 STOPSIGNAL SIGTERM
 
 ARG BASEOS=stretch
+ENV IMAGE_TYPE=console
 RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && apt-get update -qq \
