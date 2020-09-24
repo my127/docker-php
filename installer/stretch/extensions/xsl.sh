@@ -3,6 +3,16 @@
 function install_xsl()
 {
     _xsl_deps_runtime
+
+    if ! has_extension xsl; then
+        compile_xsl
+    fi
+
+    docker-php-ext-enable xsl
+}
+
+function compile_xsl()
+{
     _xsl_deps_build
 
     docker-php-ext-install xsl

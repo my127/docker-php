@@ -1,7 +1,6 @@
 #!/bin/bash
 
-set -e
-set -x
+set -e -o pipefail -x
 
 export BUILD_DEPS=(autoconf g++ make)
 export BUILD_DEPS_CLEAN=()
@@ -12,6 +11,7 @@ function main()
 {
     for extension in "$@"
     do
+        compile "$extension"
         enable_without_check "$extension"
     done
 }

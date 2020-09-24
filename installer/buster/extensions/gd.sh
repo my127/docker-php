@@ -3,6 +3,14 @@
 function install_gd()
 {
     _gd_deps_runtime
+    if ! has_extension gd; then
+        compile_gd
+    fi
+    docker-php-ext-enable gd
+}
+
+function compile_gd()
+{
     _gd_deps_build
 
     case "$VERSION" in

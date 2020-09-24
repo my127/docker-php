@@ -3,6 +3,18 @@
 function install_sodium()
 {
     _sodium_deps_runtime
+
+    if ! has_extension sodium; then
+        compile_sodium
+    fi
+
+    if has_extension sodium; then
+        docker-php-ext-enable sodium
+    fi
+}
+
+function compile_sodium()
+{
     _sodium_deps_build
 
     case "$VERSION" in

@@ -2,6 +2,15 @@
 
 function install_xdebug()
 (
+    if ! has_extension xdebug; then
+        compile_xdebug
+    fi
+
+    docker-php-ext-enable xdebug
+)
+
+function compile_xdebug()
+(
     set -o errexit -o pipefail
 
     local XDEBUG_PACKAGE="xdebug"
@@ -37,9 +46,5 @@ function install_xdebug()
                 ;&
             *)
                 printf "\n" | pecl install "$XDEBUG_PACKAGE"
-
-                docker-php-ext-enable xdebug
     esac
-
-    docker-php-ext-enable xdebug
 )

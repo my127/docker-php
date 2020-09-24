@@ -3,6 +3,14 @@
 function install_gmp()
 {
     _gmp_deps_runtime
+    if ! has_extension gmp; then
+        compile_gmp
+    fi
+    docker-php-ext-enable gmp
+}
+
+function compile_gmp()
+{
     _gmp_deps_build
 
     docker-php-ext-install gmp

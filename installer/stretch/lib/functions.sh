@@ -9,7 +9,9 @@ function enable()
         return
     fi
 
-    enable_without_check "$extension"
+    if ! enable_without_check "$extension"; then
+        return 1
+    fi
 }
 
 function enable_without_check()
@@ -21,10 +23,40 @@ function enable_without_check()
     if [ -f "$installer_file" ]; then
         # shellcheck source=../extensions/$installer_file
         declare -F "$installer_name" &>/dev/null || source "$installer_file"
-        $installer_name
-    else
-        docker-php-ext-install "$extension"
+        if ! "$installer_name"; then
+            return 1
+        fi
+    elif ! docker-php-ext-install "$extension"; then
+        return 1
     fi
+}
+
+function compile()
+{
+    local extension="$1"
+    local installer_file="extensions/${extension}.sh"
+    local compile_name="compile_${extension}"
+
+    if [ -f "$installer_file" ]; then
+        # shellcheck source=../extensions/$installer_file
+        declare -F "$compile_name" &>/dev/null || source "$installer_file"
+        if ! "$compile_name"; then
+            return 1
+        fi
+    elif ! docker-php-ext-install "$extension"; then
+        return 1
+    fi
+
+    if [ -f "/usr/local/etc/php/conf.d/docker-php-ext-$extension.ini" ]; then
+        rm "/usr/local/etc/php/conf.d/docker-php-ext-$extension.ini"
+    fi
+}
+
+function has_extension()
+{
+    local EXTENSION="$1"
+    test -f "$(php -r "echo ini_get('extension_dir');")/$EXTENSION.so"
+    return "$?"
 }
 
 function bootstrap()

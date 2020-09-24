@@ -3,6 +3,14 @@
 function install_mcrypt()
 {
     _mcrypt_deps_runtime
+    if ! has_extension mcrypt; then
+        compile_mcrypt
+    fi
+    docker-php-ext-enable mcrypt
+}
+
+function compile_mcrypt()
+{
     _mcrypt_deps_build
 
     case "$VERSION" in
@@ -17,11 +25,9 @@ function install_mcrypt()
                 ;;
             "7.4")
                 printf "\n" | pecl install mcrypt-1.0.3
-                docker-php-ext-enable mcrypt
                 ;;
             *)
                 printf "\n" | pecl install mcrypt-1.0.2
-                docker-php-ext-enable mcrypt
     esac
 
     _mcrypt_clean
@@ -29,7 +35,7 @@ function install_mcrypt()
 
 function _mcrypt_deps_runtime()
 {
-    install libmcrypt4
+    install libmcrypt4 libltdl7
 }
 
 function _mcrypt_deps_build()
