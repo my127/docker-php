@@ -2,7 +2,7 @@
 
 function install_sockets()
 {
-    if ! has_extension; then
+    if ! has_extension sockets; then
         compile_sockets
     fi
 
