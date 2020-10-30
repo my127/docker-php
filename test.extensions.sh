@@ -23,6 +23,11 @@ for extension in extensions/*; do
         echo ' success'
         continue
     fi
+    # These extensions aren't compiled for PHP 5.6
+    if  [ "$extension_name" = 'mongodb' ] && [ "$VERSION" -lt 56 ]; then
+        echo ' success'
+        continue
+    fi
     # Sodium only available for PHP 7.2+
     if  [ "$extension_name" = 'sodium' ] && [ "$VERSION" -lt 72 ]; then
         echo ' success'
