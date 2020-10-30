@@ -24,7 +24,7 @@ for extension in extensions/*; do
         continue
     fi
     # These extensions aren't compiled for PHP 5.6
-    if  [ "$extension_name" = 'mongodb' ] && [ "$VERSION" -lt 56 ]; then
+    if  [ "$extension_name" = 'mongodb' ] && [ "$VERSION" -lt 70 ]; then
         echo ' success'
         continue
     fi
