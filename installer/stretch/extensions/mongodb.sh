@@ -13,6 +13,13 @@ function compile_mongodb()
     _mongodb_deps_build
 
     pecl install mongodb
+    case "$VERSION" in
+        "5.6")
+            echo "Not compiling for PHP 5.6"
+            ;;
+        *)
+            pecl install mongodb
+    esac
 
     _mongodb_clean
 }
