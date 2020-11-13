@@ -13,18 +13,26 @@ for extension in extensions/*; do
     echo -n "Installing ${extension}..."
     extension_name="${extension%.sh}"
     extension_name="${extension_name#extensions/}"
+
+    # These extensions aren't compiled for PHP 5.6
+    if  [ "$extension_name" = 'mongodb' ] && [ "$VERSION" -lt 70 ]; then
+        echo ' skipped'
+        continue
+    fi
+    # Sodium only available for PHP 7.2+
+    if  [ "$extension_name" = 'sodium' ] && [ "$VERSION" -lt 72 ]; then
+        echo ' skipped'
+        continue
+    fi
+    
     if ! ./enable.sh "$extension_name" > /tmp/ext-install.log 2>&1; then
         echo ' failure'
         cat /tmp/ext-install.log
         exit 1
     fi
+
     # These extensions aren't enabled by default
     if [ "$extension_name" = 'blackfire' ] || [ "$extension_name" = "newrelic" ] || [ "$extension_name" = 'tideways' ]; then
-        echo ' success'
-        continue
-    fi
-    # Sodium only available for PHP 7.2+
-    if  [ "$extension_name" = 'sodium' ] && [ "$VERSION" -lt 72 ]; then
         echo ' success'
         continue
     fi
