@@ -13,7 +13,7 @@ function compile_xdebug()
 (
     set -o errexit -o pipefail
 
-    local XDEBUG_PACKAGE="xdebug"
+    local XDEBUG_PACKAGE="xdebug-2.9.8"
     case "$VERSION" in
             "5.6")
                 XDEBUG_PACKAGE="xdebug-2.5.5"
