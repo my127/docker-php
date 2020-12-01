@@ -11,5 +11,7 @@ function install_opcache()
 
 function compile_opcache()
 {
-    docker-php-ext-install opcache
+    if has_extension opcache; then
+        docker-php-ext-install opcache
+    fi
 }
