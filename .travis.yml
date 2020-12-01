@@ -5,12 +5,6 @@ services:
 
 matrix:
   include:
-    - env: BUILD="php56"
-    - env: BUILD="php70"
-    - env: BUILD="php71"
-    - env: BUILD="php72"
-    - env: BUILD="php73"
-    - env: BUILD="php74"
     - env: BUILD="php80"
 
 script:
