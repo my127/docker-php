@@ -3,13 +3,13 @@
 function install_opcache()
 {
     if ! has_extension opcache; then
-        compile_sockets
+        compile_opcache
     fi
 
     docker-php-ext-enable opcache
 }
 
-function compile_sockets()
+function compile_opcache()
 {
     docker-php-ext-install opcache
 }
