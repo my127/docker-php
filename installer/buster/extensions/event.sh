@@ -17,15 +17,7 @@ function compile_event()
 
     case "$VERSION" in
             "8.0")
-                # Beta release, so need to specify the version
-                pecl install --nobuild event-3.0.0
-                cd /tmp/pear/temp/event/
-                phpize
-                ./configure
-                make
-                make install
-                cd /root/installer
-                rm -rf /tmp/pear/temp/event/
+                echo "Skipping event install, unsupported php version"
                 ;;
             *)
                 if ! printf "\n" | pecl install event; then
