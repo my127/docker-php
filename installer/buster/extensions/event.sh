@@ -24,6 +24,7 @@ function compile_event()
                 ./configure
                 make
                 make install
+                cd /root/installer
                 rm -rf /tmp/pear/temp/event/
                 ;;
             *)
