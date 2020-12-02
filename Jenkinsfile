@@ -27,14 +27,13 @@ pipeline {
                     }
                     stage('Publish') {
                         environment {
-                            DOCKER_USERNAME = credentials('DOCKER_USERNAME')
-                            DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
+                            DOCKER_REGISTRY_CREDS = credentials('docker-registry-credentials')
                         }
                         when {
                             branch 'main'
                         }
                         steps {
-                            sh 'echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin docker.io'
+                            sh 'echo "$DOCKER_REGISTRY_CREDS_PSW" | docker login --username "$DOCKER_REGISTRY_CREDS_USR" --password-stdin docker.io'
                             sh 'docker-compose config --services | grep -E "${BUILD}" | xargs docker-compose push'
                         }
                         post {
