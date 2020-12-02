@@ -41,6 +41,9 @@ for extension in extensions/*; do
         echo ' success'
         continue
     fi
+    if [ "$extension_name" = "opcache" ]; then
+        extension_name='Zend OPcache'
+    fi
     if php -m | grep -i -q "^$extension_name\$"; then
         echo ' success'
         continue
