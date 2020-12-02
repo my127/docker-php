@@ -21,10 +21,10 @@ function main()
         if ! compile "$extension_name" > /tmp/ext-install.log 2>&1; then
             echo " failure"
             cat /tmp/ext-install.log
-            kill "$KEEPALIVE_PID"
+            kill "$KEEPALIVE_PID" || true
             exit 1
         fi
-        kill "$KEEPALIVE_PID"
+        kill "$KEEPALIVE_PID" || true
         echo " success"
     done
 
