@@ -43,7 +43,8 @@ function compile_xdebug()
                 ;;
             "7.0")
                 XDEBUG_PACKAGE="xdebug-2.8.1"
-                ;&
+                printf "\n" | pecl install "$XDEBUG_PACKAGE"
+                ;;
             "8.0")
                 XDEBUG_PACKAGE="xdebug"
                 ;&
