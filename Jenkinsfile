@@ -46,11 +46,11 @@ pipeline {
                                 }
                             }
                         }
-                    }
-                    post {
-                        always {
-                            sh 'docker-compose down -v --rmi local'
-                            cleanWs()
+                        post {
+                            always {
+                                sh 'docker-compose down -v --rmi local'
+                                cleanWs()
+                            }
                         }
                     }
                 }
