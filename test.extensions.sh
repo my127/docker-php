@@ -25,11 +25,11 @@ for extension in extensions/*; do
         continue
     fi
     # Some extensions only available for PHP <8.0
-    if  [[ "$extension_name" = 'event' || "$extension_name" = 'mcrypt' || "$extension_name" = 'protobuf' ]] && [ "$VERSION" -ge 80 ]; then
+    if  [[ "$extension_name" = 'event' || "$extension_name" = 'mcrypt' || "$extension_name" = 'protobuf' || "$extension_name" = 'rdkafka' || "$extension_name" = 'xmlrpc' ]] && [ "$VERSION" -ge 80 ]; then
         echo ' skipped'
         continue
     fi
-    
+
     if ! ./enable.sh "$extension_name" > /tmp/ext-install.log 2>&1; then
         echo ' failure'
         cat /tmp/ext-install.log
