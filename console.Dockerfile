@@ -56,16 +56,16 @@ USER root
 
 # Tool: composer
 # --------------
-RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/fb07bd70d93cf733c1c94aef7fc68502f81aca2b/web/installer \
+RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/95238c3f58da2dfc442ae537ad0c9dbdb808a232/web/installer \
  && php -r " \
-    \$signature = '8a6138e2a05a8c28539c9f0fb361159823655d7ad2deecb371b04a83966c61223adc522b0189079e3e9e277cd72b8897'; \
+    \$signature = '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3'; \
     \$hash = hash('sha384', file_get_contents('/tmp/installer.php')); \
     if (!hash_equals(\$signature, \$hash)) { \
         unlink('/tmp/installer.php'); \
         echo 'Integrity check failed, installer is either corrupt or worse.' . PHP_EOL; \
         exit(1); \
     }" \
- && php /tmp/installer.php --no-ansi --install-dir=/usr/bin --filename=composer --version=1.10.10
+ && php /tmp/installer.php --no-ansi --install-dir=/usr/bin --filename=composer --version=2.0.8
 
 # Tool: composer > hirak/prestissimo
 # ----------------------------------

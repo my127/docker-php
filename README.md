@@ -16,7 +16,7 @@ A starting point with some common extensions for running various frameworks and 
 Used in development for building and interacting with the application with a familiar set of tools, can also be used as part of a multi-stage build docker image.
 ### Packages
 * build-tools (autoconf, automake, g++, gcc, make, nasm)
-* composer (1.8.4)
+* composer (2.0.8)
 * curl
 * gettext-base
 * git
