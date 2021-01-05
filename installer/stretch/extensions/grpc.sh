@@ -14,8 +14,8 @@ function compile_grpc()
 
     PACKAGE_NAME="grpc"
     case "$VERSION" in
-            "8.0")
-                PACKAGE_NAME="grpc-1.34.0RC2"
+            "5.6")
+                PACKAGE_NAME="grpc-1.33.1"
                 ;;
     esac
 
