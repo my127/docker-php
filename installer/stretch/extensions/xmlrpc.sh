@@ -14,7 +14,8 @@ function compile_xmlrpc()
 
     case "$VERSION" in
         "8.0")
-            printf "\n" | pecl install xmlrpc-1.0.0RC1
+            # Work around 'ERROR: bad md5sum for file /tmp/pear/temp/xmlrpc/package.xml' with -f
+            printf "\n" | pecl install -f xmlrpc-1.0.0RC1
             ;;
         *)
             docker-php-ext-install xmlrpc
