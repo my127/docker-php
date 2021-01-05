@@ -26,14 +26,8 @@ function compile_mcrypt()
             "7.1")
                 docker-php-ext-install mcrypt
                 ;;
-            "7.4")
-                printf "\n" | pecl install mcrypt-1.0.3
-                ;;
-            "8.0")
-                echo "Skipping mcrypt install, unsupported php version"
-                ;;
             *)
-                printf "\n" | pecl install mcrypt-1.0.2
+                printf "\n" | pecl install mcrypt
     esac
 
     _mcrypt_clean
