@@ -10,16 +10,21 @@ source ./lib/functions.sh
 
 function main()
 {
+    local KEEPALIVE_PID
     for extension in extensions/*
     do
         extension_name="${extension%.sh}"
         extension_name="${extension_name#extensions/}"
         echo -n "Installing ${extension}..."
+        bash -c 'for i in {0..20}; do sleep 30 && echo -n "."; done' &
+        KEEPALIVE_PID="$!"
         if ! compile "$extension_name" > /tmp/ext-install.log 2>&1; then
             echo " failure"
             cat /tmp/ext-install.log
+            kill "$KEEPALIVE_PID" || true
             exit 1
         fi
+        kill "$KEEPALIVE_PID" || true
         echo " success"
     done
 

@@ -38,7 +38,8 @@ function _gd_deps_runtime()
     install \
       libfreetype6 \
       libjpeg62-turbo \
-      libpng16-16
+      libpng16-16 \
+      zlibc
 }
 
 function _gd_deps_build()
@@ -46,7 +47,8 @@ function _gd_deps_build()
     install \
       libfreetype6-dev \
       libjpeg62-turbo-dev \
-      libpng-dev
+      libpng-dev \
+      zlib1g-dev
 }
 
 function _gd_clean()

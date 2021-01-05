@@ -15,9 +15,15 @@ function compile_event()
 {
     _event_deps_build
 
-    if ! printf "\n" | pecl install event; then
-        return 1
-    fi
+    case "$VERSION" in
+            "8.0")
+                echo "Skipping event install, unsupported php version"
+                ;;
+            *)
+                if ! printf "\n" | pecl install event; then
+                    return 1
+                fi
+    esac
 
     _event_clean
 }

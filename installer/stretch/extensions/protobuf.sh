@@ -12,6 +12,9 @@ function install_protobuf()
 function compile_protobuf()
 {
     case "$VERSION" in
+            "8.0")
+                echo "Skipping protobuf install, unsupported php version"
+                ;;
             "5.6")
                 printf "\n" | pecl install protobuf-3.12.4
                 ;;

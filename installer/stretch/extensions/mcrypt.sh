@@ -6,7 +6,10 @@ function install_mcrypt()
     if ! has_extension mcrypt; then
         compile_mcrypt
     fi
-    docker-php-ext-enable mcrypt
+
+    if has_extension mcrypt; then
+        docker-php-ext-enable mcrypt
+    fi
 }
 
 function compile_mcrypt()
@@ -25,6 +28,9 @@ function compile_mcrypt()
                 ;;
             "7.4")
                 printf "\n" | pecl install mcrypt-1.0.3
+                ;;
+            "8.0")
+                echo "Skipping mcrypt install, unsupported php version"
                 ;;
             *)
                 printf "\n" | pecl install mcrypt-1.0.2

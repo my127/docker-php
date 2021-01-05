@@ -67,6 +67,15 @@ services:
         VERSION: 7.4
         BASEOS: buster
 
+  php80-fpm-buster-base:
+    image: my127/php:8.0-fpm-buster
+    build:
+      context: ./
+      dockerfile: base.Dockerfile
+      args:
+        VERSION: 8.0
+        BASEOS: buster
+
   # Console Images
 
   php56-fpm-stretch-console:
@@ -145,3 +154,14 @@ services:
         BASEOS: buster
     depends_on:
       - php74-fpm-buster-base
+
+  php80-fpm-buster-console:
+    image: my127/php:8.0-fpm-buster-console
+    build:
+      context: ./
+      dockerfile: console.Dockerfile
+      args:
+        VERSION: 8.0
+        BASEOS: buster
+    depends_on:
+      - php80-fpm-buster-base

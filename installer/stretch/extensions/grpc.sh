@@ -11,7 +11,16 @@ function install_grpc()
 function compile_grpc()
 {
     _grpc_deps_build
-    pecl install grpc
+
+    PACKAGE_NAME="grpc"
+    case "$VERSION" in
+            "8.0")
+                PACKAGE_NAME="grpc-1.34.0RC2"
+                ;;
+    esac
+
+    pecl install "$PACKAGE_NAME"
+
     _grpc_clean
 }
 

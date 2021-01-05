@@ -24,7 +24,12 @@ for extension in extensions/*; do
         echo ' skipped'
         continue
     fi
-    
+    # Some extensions only available for PHP <8.0
+    if  [[ "$extension_name" = 'event' || "$extension_name" = 'mcrypt' || "$extension_name" = 'protobuf' || "$extension_name" = 'rdkafka' || "$extension_name" = 'ssh2' || "$extension_name" = 'xmlrpc' ]] && [ "$VERSION" -ge 80 ]; then
+        echo ' skipped'
+        continue
+    fi
+
     if ! ./enable.sh "$extension_name" > /tmp/ext-install.log 2>&1; then
         echo ' failure'
         cat /tmp/ext-install.log
@@ -35,6 +40,9 @@ for extension in extensions/*; do
     if [ "$extension_name" = 'blackfire' ] || [ "$extension_name" = "newrelic" ] || [ "$extension_name" = 'tideways' ]; then
         echo ' success'
         continue
+    fi
+    if [ "$extension_name" = "opcache" ]; then
+        extension_name='Zend OPcache'
     fi
     if php -m | grep -i -q "^$extension_name\$"; then
         echo ' success'

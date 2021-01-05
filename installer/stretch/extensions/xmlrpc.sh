@@ -12,7 +12,13 @@ function compile_xmlrpc()
 {
     _xmlrpc_deps_build
 
-    docker-php-ext-install xmlrpc
+    case "$VERSION" in
+        "8.0")
+            echo "Skipping xmlrpc due to unsupported php version"
+            ;;
+        *)
+            docker-php-ext-install xmlrpc
+    esac
 
     _xmlrpc_clean
 }

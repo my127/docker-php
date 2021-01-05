@@ -12,6 +12,9 @@ function compile_ssh2()
 {
     _ssh2_deps_build
     case "$VERSION" in
+        "8.0")
+            echo "Skipping ssh2 installation due to unsupported php version"
+            ;;
         "5.6")
             printf "\n" | pecl install ssh2-0.13
             ;;
