@@ -8,7 +8,7 @@ function install_event()
 
     _event_deps_runtime
 
-    docker-php-ext-enable event
+    docker-php-ext-enable --ini-name zz-docker-php-ext-event.ini event
 }
 
 function compile_event()
