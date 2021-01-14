@@ -6,7 +6,9 @@ function install_protobuf()
         compile_protobuf
     fi
 
-    docker-php-ext-enable protobuf
+    if has_extension protobuf; then
+        docker-php-ext-enable protobuf
+    fi
 }
 
 function compile_protobuf()

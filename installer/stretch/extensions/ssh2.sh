@@ -5,7 +5,10 @@ function install_ssh2()
     if ! has_extension ssh2; then
         compile_ssh2
     fi
-    docker-php-ext-enable ssh2
+
+    if has_extension ssh2; then
+        docker-php-ext-enable ssh2
+    fi
 }
 
 function compile_ssh2()
