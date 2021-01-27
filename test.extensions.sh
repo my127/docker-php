@@ -25,7 +25,7 @@ for extension in extensions/*; do
         continue
     fi
     # Some extensions only available for PHP <8.0
-    if  [[ "$extension_name" = 'event' || "$extension_name" = 'mcrypt' || "$extension_name" = 'protobuf' || "$extension_name" = 'rdkafka' || "$extension_name" = 'ssh2' || "$extension_name" = 'xmlrpc' ]] && [ "$VERSION" -ge 80 ]; then
+    if  [[ "$extension_name" = 'event' || "$extension_name" = 'mcrypt' || "$extension_name" = 'protobuf' || "$extension_name" = 'ssh2' || "$extension_name" = 'xmlrpc' ]] && [ "$VERSION" -ge 80 ]; then
         echo ' skipped'
         continue
     fi

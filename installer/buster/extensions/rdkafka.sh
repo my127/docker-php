@@ -15,13 +15,7 @@ function compile_rdkafka()
 {
     _rdkafka_deps_build
 
-    case "$VERSION" in
-        "8.0")
-            echo "Skipping rdkafka due to unsupported php version"
-            ;;
-        *)
-          pecl install rdkafka
-    esac
+    pecl install rdkafka
 
     _rdkafka_clean
 }

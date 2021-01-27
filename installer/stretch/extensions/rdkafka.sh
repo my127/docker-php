@@ -15,7 +15,13 @@ function compile_rdkafka()
 {
     _rdkafka_deps_build
 
-    pecl install rdkafka
+    case "$VERSION" in
+        "5.6")
+            pecl install rdkafka-4.1.2
+            ;;
+        *)
+            pecl install rdkafka
+    esac
 
     _rdkafka_clean
 }
