@@ -6,9 +6,14 @@ function install_ssh2()
         compile_ssh2
     fi
 
-    if has_extension ssh2; then
-        docker-php-ext-enable ssh2
-    fi
+    case "$VERSION" in
+        "8.0")
+            echo "Skipping ssh2 enable, unsupported php version"
+            return 0
+            ;;
+    esac
+
+    docker-php-ext-enable ssh2
 }
 
 function compile_ssh2()
