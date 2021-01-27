@@ -8,14 +8,22 @@ function install_rdkafka()
         compile_rdkafka
     fi
 
-    docker-php-ext-enable rdkafka
+    if has_extension rdkafka; then
+        docker-php-ext-enable rdkafka
+    fi
 }
 
 function compile_rdkafka()
 {
     _rdkafka_deps_build
 
-    pecl install rdkafka
+    case "$VERSION" in
+        "5.6")
+            pecl install rdkafka-4.1.2
+            ;;
+        *)
+            pecl install rdkafka
+    esac
 
     _rdkafka_clean
 }

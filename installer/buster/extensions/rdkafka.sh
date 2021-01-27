@@ -8,20 +8,16 @@ function install_rdkafka()
         compile_rdkafka
     fi
 
-    docker-php-ext-enable rdkafka
+    if has_extension rdkafka; then
+        docker-php-ext-enable rdkafka
+    fi
 }
 
 function compile_rdkafka()
 {
     _rdkafka_deps_build
 
-    case "$VERSION" in
-        "8.0")
-            echo "Skipping rdkafka due to unsupported php version"
-            ;;
-        *)
-          pecl install rdkafka
-    esac
+    pecl install rdkafka
 
     _rdkafka_clean
 }
