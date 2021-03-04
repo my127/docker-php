@@ -1,11 +1,14 @@
 ARG VERSION=7.3
 ARG BASEOS=stretch
+ARG REDIS_VERSION=6.2
+
+FROM redis:${REDIS_VERSION}-${BASEOS} as redis
+
 FROM my127/php:${VERSION}-fpm-${BASEOS}
 # upstream is SIGQUIT, cli should be SIGTERM
 STOPSIGNAL SIGTERM
 
 ARG BASEOS
-ARG REDIS_VERSION=6.2
 ENV IMAGE_TYPE=console
 RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
@@ -38,7 +41,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && rm -rf /var/lib/apt/lists/* \
  && for i in $(seq 1 8); do rm -rf "/usr/share/man/man$i"; done
 
-COPY --from=redis:${REDIS_VERSION}-${BASEOS} /usr/local/bin/redis-cli /usr/local/bin/redis-cli
+COPY --from=redis /usr/local/bin/redis-cli /usr/local/bin/redis-cli
 
 # User: build
 # -----------
