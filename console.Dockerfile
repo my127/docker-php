@@ -8,7 +8,6 @@ FROM my127/php:${VERSION}-fpm-${BASEOS}
 # upstream is SIGQUIT, cli should be SIGTERM
 STOPSIGNAL SIGTERM
 
-ARG BASEOS
 ENV IMAGE_TYPE=console
 RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
