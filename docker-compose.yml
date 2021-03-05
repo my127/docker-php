@@ -11,6 +11,7 @@ services:
       dockerfile: base.Dockerfile
       args:
         VERSION: 5.6
+        REDIS_VERSION: 5.0
         BASEOS: stretch
 
   php70-fpm-stretch-base:
@@ -20,6 +21,7 @@ services:
       dockerfile: base.Dockerfile
       args:
         VERSION: 7.0
+        REDIS_VERSION: 5.0
         BASEOS: stretch
 
   php71-fpm-stretch-base:
@@ -29,6 +31,7 @@ services:
       dockerfile: base.Dockerfile
       args:
         VERSION: 7.1
+        REDIS_VERSION: 5.0
         BASEOS: stretch
 
   php72-fpm-stretch-base:
@@ -38,6 +41,7 @@ services:
       dockerfile: base.Dockerfile
       args:
         VERSION: 7.2
+        REDIS_VERSION: 5.0
         BASEOS: stretch
 
   php73-fpm-stretch-base:
@@ -47,6 +51,7 @@ services:
       dockerfile: base.Dockerfile
       args:
         VERSION: 7.3
+        REDIS_VERSION: 5.0
         BASEOS: stretch
 
   php73-fpm-buster-base:
@@ -85,6 +90,7 @@ services:
       dockerfile: console.Dockerfile
       args:
         VERSION: 5.6
+        REDIS_VERSION: 5.0
         BASEOS: stretch
     depends_on:
       - php56-fpm-stretch-base
@@ -96,6 +102,7 @@ services:
       dockerfile: console.Dockerfile
       args:
         VERSION: 7.0
+        REDIS_VERSION: 5.0
         BASEOS: stretch
     depends_on:
       - php70-fpm-stretch-base
@@ -107,6 +114,7 @@ services:
       dockerfile: console.Dockerfile
       args:
         VERSION: 7.1
+        REDIS_VERSION: 5.0
         BASEOS: stretch
     depends_on:
       - php71-fpm-stretch-base
@@ -118,6 +126,7 @@ services:
       dockerfile: console.Dockerfile
       args:
         VERSION: 7.2
+        REDIS_VERSION: 5.0
         BASEOS: stretch
     depends_on:
       - php72-fpm-stretch-base
@@ -129,6 +138,7 @@ services:
       dockerfile: console.Dockerfile
       args:
         VERSION: 7.3
+        REDIS_VERSION: 5.0
         BASEOS: stretch
     depends_on:
       - php73-fpm-stretch-base
