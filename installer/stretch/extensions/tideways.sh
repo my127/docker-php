@@ -29,7 +29,7 @@ function _tideways_deps_build()
       apt-transport-https \
       gnupg2
 
-    echo 'deb https://packages.tideways.com/apt-packages debian main' > /etc/apt/sources.list.d/tideways.list
+    echo 'deb https://packages.tideways.com/apt-packages-main any-version main' > /etc/apt/sources.list.d/tideways.list
     curl -L -sS 'https://packages.tideways.com/key.gpg' | apt-key add -
     apt-get update -qq
 }
