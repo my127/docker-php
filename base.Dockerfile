@@ -29,7 +29,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
 # ---
 COPY installer/stretch /root/installer
 COPY "installer/$BASEOS" /root/installer
-RUN cd /root/installer; ./precompile.sh \
+RUN cd /root/installer && ./precompile.sh \
  && ./enable.sh \
   bcmath \
   gd \
