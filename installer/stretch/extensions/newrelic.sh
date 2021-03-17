@@ -2,7 +2,7 @@
 
 function install_newrelic()
 {
-    curl -L https://download.newrelic.com/php_agent/archive/9.1.0.246/newrelic-php5-9.1.0.246-linux.tar.gz | tar -C /tmp -zx
+    curl -L https://download.newrelic.com/php_agent/archive/9.16.0.295/newrelic-php5-9.16.0.295-linux.tar.gz | tar -C /tmp -zx
 
     export NR_INSTALL_USE_CP_NOT_LN=1
     export NR_INSTALL_SILENT=1
