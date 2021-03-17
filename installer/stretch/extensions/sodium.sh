@@ -8,9 +8,18 @@ function install_sodium()
         compile_sodium
     fi
 
-    if has_extension sodium; then
-        docker-php-ext-enable sodium
-    fi
+    case "$VERSION" in
+        "5.6")
+            ;&
+        "7.0")
+            ;&
+        "7.1")
+            echo "Skipping sodium enable, unsupported php version"
+            return 0
+            ;;
+    esac
+
+    docker-php-ext-enable sodium
 }
 
 function compile_sodium()
@@ -18,17 +27,17 @@ function compile_sodium()
     _sodium_deps_build
 
     case "$VERSION" in
-            "7.2")
-                docker-php-ext-configure sodium --with-sodium=/usr/lib/x86_64-linux-gnu/libsodium.so.23
-                docker-php-ext-install sodium
-                ;;
-            "7.3")
-                docker-php-ext-configure sodium --with-sodium=/usr/lib/x86_64-linux-gnu/libsodium.so.23
-                docker-php-ext-install sodium
-                ;;
-            *)
-                echo "Skipping sodium install, unsupported php version"
-                ;;
+        "5.6")
+            ;&
+        "7.0")
+            ;&
+        "7.1")
+            echo "Skipping sodium install, unsupported php version"
+            ;;
+        *)
+            docker-php-ext-configure sodium --with-sodium=/usr/lib/x86_64-linux-gnu/libsodium.so.23
+            docker-php-ext-install sodium
+            ;;
     esac
 
     _sodium_clean

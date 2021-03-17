@@ -14,7 +14,7 @@ function compile_xmlrpc()
 
     case "$VERSION" in
         "8.0")
-            echo "Skipping xmlrpc due to unsupported php version"
+            printf "\n" | pecl install xmlrpc-1.0.0RC2
             ;;
         *)
             docker-php-ext-install xmlrpc
