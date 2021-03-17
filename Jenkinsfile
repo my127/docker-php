@@ -18,6 +18,11 @@ pipeline {
                     stage('Build, Test, Publish') {
                         agent { label 'my127ws' }
                         stages {
+                            stage('Quality Checks') {
+                               steps {
+                                   sh './quality.sh'
+                               }
+                            }
                             stage('Build') {
                                 steps {
                                     sh './build.sh'
