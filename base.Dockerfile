@@ -15,6 +15,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
    ca-certificates \
    gettext-base \
    iproute2 \
+   msmtp \
    supervisor \
   # clean \
  && apt-get auto-remove -qq -y \
