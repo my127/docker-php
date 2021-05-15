@@ -83,9 +83,12 @@ function clean()
     done
 
     apt-get auto-remove -qq -y
-    apt-get clean
 
-    rm -rf /var/lib/apt/lists/*
+    if [ "${CLEAN_SKIP_APT_CACHE:-}" != true ]; then
+        apt-get clean
+
+        rm -rf /var/lib/apt/lists/*
+    fi
 }
 
 function install()

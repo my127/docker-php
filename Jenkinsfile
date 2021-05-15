@@ -1,5 +1,9 @@
 pipeline {
     agent none
+    environment {
+        COMPOSE_DOCKER_CLI_BUILD = 1
+        DOCKER_BUILDKIT = 1
+    }
     options {
         buildDiscarder(logRotator(daysToKeepStr: '30'))
         parallelsAlwaysFailFast()

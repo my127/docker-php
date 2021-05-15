@@ -8,78 +8,102 @@ services:
     image: my127/php:5.6-fpm-stretch
     build:
       context: ./
+      cache_from:
+        - my127/php:5.6-fpm-stretch
       dockerfile: base.Dockerfile
       args:
         VERSION: 5.6
         REDIS_VERSION: 5.0
         BASEOS: stretch
+        BUILDKIT_INLINE_CACHE: 1
 
   php70-fpm-stretch-base:
     image: my127/php:7.0-fpm-stretch
     build:
       context: ./
+      cache_from:
+        - my127/php:7.0-fpm-stretch
       dockerfile: base.Dockerfile
       args:
         VERSION: 7.0
         REDIS_VERSION: 5.0
         BASEOS: stretch
+        BUILDKIT_INLINE_CACHE: 1
 
   php71-fpm-stretch-base:
     image: my127/php:7.1-fpm-stretch
     build:
       context: ./
+      cache_from:
+        - my127/php:7.1-fpm-stretch
       dockerfile: base.Dockerfile
       args:
         VERSION: 7.1
         REDIS_VERSION: 5.0
         BASEOS: stretch
+        BUILDKIT_INLINE_CACHE: 1
 
   php72-fpm-stretch-base:
     image: my127/php:7.2-fpm-stretch
     build:
       context: ./
+      cache_from:
+        - my127/php:7.1-fpm-stretch
       dockerfile: base.Dockerfile
       args:
         VERSION: 7.2
         REDIS_VERSION: 5.0
         BASEOS: stretch
+        BUILDKIT_INLINE_CACHE: 1
 
   php73-fpm-stretch-base:
     image: my127/php:7.3-fpm-stretch
     build:
       context: ./
+      cache_from:
+        - php73-fpm-stretch-base
       dockerfile: base.Dockerfile
       args:
         VERSION: 7.3
         REDIS_VERSION: 5.0
         BASEOS: stretch
+        BUILDKIT_INLINE_CACHE: 1
 
   php73-fpm-buster-base:
     image: my127/php:7.3-fpm-buster
     build:
       context: ./
+      cache_from:
+        - my127/php:7.3-fpm-buster
       dockerfile: base.Dockerfile
       args:
         VERSION: 7.3
         BASEOS: buster
+        BUILDKIT_INLINE_CACHE: 1
 
   php74-fpm-buster-base:
     image: my127/php:7.4-fpm-buster
     build:
       context: ./
+      cache_from:
+        - my127/php:7.4-fpm-buster
       dockerfile: base.Dockerfile
       args:
         VERSION: 7.4
         BASEOS: buster
+        BUILDKIT_INLINE_CACHE: 1
 
   php80-fpm-buster-base:
     image: my127/php:8.0-fpm-buster
     build:
       context: ./
+      cache_from:
+        - my127/php:8.0-fpm-buster
       dockerfile: base.Dockerfile
       args:
         VERSION: 8.0
         BASEOS: buster
+        BUILDKIT_INLINE_CACHE: 1
 
   # Console Images
 
@@ -87,11 +111,14 @@ services:
     image: my127/php:5.6-fpm-stretch-console
     build:
       context: ./
+      cache_from:
+        - my127/php:5.6-fpm-stretch-console
       dockerfile: console.Dockerfile
       args:
         VERSION: 5.6
         REDIS_VERSION: 5.0
         BASEOS: stretch
+        BUILDKIT_INLINE_CACHE: 1
     depends_on:
       - php56-fpm-stretch-base
 
@@ -99,11 +126,14 @@ services:
     image: my127/php:7.0-fpm-stretch-console
     build:
       context: ./
+      cache_from:
+        - my127/php:7.0-fpm-stretch-console
       dockerfile: console.Dockerfile
       args:
         VERSION: 7.0
         REDIS_VERSION: 5.0
         BASEOS: stretch
+        BUILDKIT_INLINE_CACHE: 1
     depends_on:
       - php70-fpm-stretch-base
 
@@ -111,11 +141,14 @@ services:
     image: my127/php:7.1-fpm-stretch-console
     build:
       context: ./
+      cache_from:
+        - my127/php:7.1-fpm-stretch-console
       dockerfile: console.Dockerfile
       args:
         VERSION: 7.1
         REDIS_VERSION: 5.0
         BASEOS: stretch
+        BUILDKIT_INLINE_CACHE: 1
     depends_on:
       - php71-fpm-stretch-base
 
@@ -123,11 +156,14 @@ services:
     image: my127/php:7.2-fpm-stretch-console
     build:
       context: ./
+      cache_from:
+        - my127/php:7.2-fpm-stretch-console
       dockerfile: console.Dockerfile
       args:
         VERSION: 7.2
         REDIS_VERSION: 5.0
         BASEOS: stretch
+        BUILDKIT_INLINE_CACHE: 1
     depends_on:
       - php72-fpm-stretch-base
 
@@ -135,11 +171,14 @@ services:
     image: my127/php:7.3-fpm-stretch-console
     build:
       context: ./
+      cache_from:
+        - my127/php:7.3-fpm-stretch-console
       dockerfile: console.Dockerfile
       args:
         VERSION: 7.3
         REDIS_VERSION: 5.0
         BASEOS: stretch
+        BUILDKIT_INLINE_CACHE: 1
     depends_on:
       - php73-fpm-stretch-base
 
@@ -147,10 +186,13 @@ services:
     image: my127/php:7.3-fpm-buster-console
     build:
       context: ./
+      cache_from:
+        - my127/php:7.3-fpm-buster-console
       dockerfile: console.Dockerfile
       args:
         VERSION: 7.3
         BASEOS: buster
+        BUILDKIT_INLINE_CACHE: 1
     depends_on:
       - php73-fpm-buster-base
 
@@ -158,10 +200,13 @@ services:
     image: my127/php:7.4-fpm-buster-console
     build:
       context: ./
+      cache_from: 
+        - my127/php:7.4-fpm-buster-console
       dockerfile: console.Dockerfile
       args:
         VERSION: 7.4
         BASEOS: buster
+        BUILDKIT_INLINE_CACHE: 1
     depends_on:
       - php74-fpm-buster-base
 
@@ -169,9 +214,12 @@ services:
     image: my127/php:8.0-fpm-buster-console
     build:
       context: ./
+      cache_from: 
+        - my127/php:8.0-fpm-buster-console
       dockerfile: console.Dockerfile
       args:
         VERSION: 8.0
         BASEOS: buster
+        BUILDKIT_INLINE_CACHE: 1
     depends_on:
       - php80-fpm-buster-base
