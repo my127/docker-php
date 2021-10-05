@@ -18,12 +18,15 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138 0E98404D386FA1D9; \
  fi \
  && apt-get update -qq \
+ && apt-get upgrade -qq -y \
  && DEBIAN_FRONTEND=noninteractive apt-get -qq -y --no-install-recommends install \
   # package dependencies \
    ca-certificates \
+   curl \
    gettext-base \
    iproute2 \
    msmtp \
+   openssl \
    supervisor \
   # clean \
  && apt-get remove dirmngr gnupg2 -qq -y \
