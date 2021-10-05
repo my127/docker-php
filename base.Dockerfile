@@ -9,8 +9,13 @@ ENV IMAGE_TYPE=base
 RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && if [ "$VERSION" != "5.6" ] && [ "$VERSION" != "7.0" ] && [ "$VERSION" != "7.1" ] && [ "$BASEOS" = "stretch" ]; then \
-    echo 'deb http://deb.debian.org/debian stretch-backports main' >> /etc/apt/sources.list.d/stetch-backports.list \
- && apt-key adv –recv-keys 648ACFD622F3D138 0E98404D386FA1D9; \
+   apt-get update -qq \
+   && echo 'deb http://deb.debian.org/debian stretch-backports main' >> /etc/apt/sources.list.d/stetch-backports.list \
+   && DEBIAN_FRONTEND=noninteractive apt-get -qq -y --no-install-recommends install \
+    # key receive dependencies \
+     dirmngr \
+     gnupg2 \
+   && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138 0E98404D386FA1D9; \
  fi \
  && apt-get update -qq \
  && DEBIAN_FRONTEND=noninteractive apt-get -qq -y --no-install-recommends install \
@@ -21,6 +26,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
    msmtp \
    supervisor \
   # clean \
+ && apt-get remove dirmngr gnupg2 -qq -y \
  && apt-get auto-remove -qq -y \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
