@@ -2,7 +2,6 @@ pipeline {
     agent none
     options {
         buildDiscarder(logRotator(daysToKeepStr: '30'))
-        parallelsAlwaysFailFast()
     }
     triggers { cron(env.BRANCH_NAME ==~ /^main$/ ? 'H H(0-6) 1 * *' : '') }
     stages {
@@ -11,7 +10,7 @@ pipeline {
                 axes {
                     axis {
                         name 'BUILD'
-                        values 'php56|php70', 'php71|php72', 'php73|php74', 'php80'
+                        values 'php56', 'php70', 'php71', 'php72', 'php73', 'php74', 'php80'
                     }
                 }
                 stages {
