@@ -2,7 +2,6 @@ pipeline {
     agent none
     options {
         buildDiscarder(logRotator(daysToKeepStr: '30'))
-        parallelsAlwaysFailFast()
     }
     triggers { cron(env.BRANCH_NAME ==~ /^main$/ ? 'H H(0-6) 1 * *' : '') }
     stages {

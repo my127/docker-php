@@ -16,6 +16,9 @@ function compile_mongodb()
         "5.6")
             echo "Not compiling mongodb extension for PHP 5.6"
             ;;
+        "7.0")
+            pecl install mongodb-1.9.2
+            ;;
         *)
             pecl install mongodb
     esac

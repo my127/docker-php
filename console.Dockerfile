@@ -71,7 +71,7 @@ RUN curl --silent --fail --location --retry 3 --output /tmp/composer-installer.p
         echo 'Integrity check failed, installer is either corrupt or worse.' . PHP_EOL; \
         exit(1); \
     }" \
- && php /tmp/composer-installer.php --no-ansi --install-dir=/usr/bin --filename=composer --version=1.10.22 \
+ && php /tmp/composer-installer.php --no-ansi --install-dir=/usr/bin --filename=composer --version=1.10.23 \
  && rm /tmp/composer-installer.php
 
 # Tool: composer > hirak/prestissimo
