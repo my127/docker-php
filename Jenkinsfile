@@ -4,29 +4,41 @@ pipeline {
         buildDiscarder(logRotator(daysToKeepStr: '30'))
     }
     triggers { cron(env.BRANCH_NAME ==~ /^main$/ ? 'H H(0-6) 1 * *' : '') }
+    environment {
+        BUILDKIT_PROGRESS = 'plain'
+    }
     stages {
         stage('Matrix') {
             matrix {
                 axes {
                     axis {
                         name 'BUILD'
-                        values 'php56|php70', 'php71|php72', 'php73|php74', 'php80'
+                        // values 'php56 php70', 'php71 php72', 'php73 php74', 'php80'
+                        values 'php80'
                     }
                 }
                 stages {
                     stage('Build, Test, Publish') {
                         agent { label 'my127ws' }
                         stages {
+                            stage('Setup') {
+                                steps {
+                                    script {
+                                        sh 'docker run --rm --privileged multiarch/qemu-user-static --reset -p yes'
+                                        env.CONTEXT = sh(script: 'docker buildx create --use', returnStdout: true).trim()
+                                    }
+                                }
+                            }
                             stage('Build') {
                                 steps {
                                     sh './build.sh'
                                 }
                             }
-                            stage('Test') {
-                                steps {
-                                    sh './test.sh'
-                                }
-                            }
+                            // stage('Test') {
+                            //     steps {
+                            //         sh './test.sh'
+                            //     }
+                            // }
                             stage('Publish') {
                                 environment {
                                     DOCKER_REGISTRY_CREDS = credentials('docker-registry-credentials')
@@ -36,7 +48,7 @@ pipeline {
                                 }
                                 steps {
                                     sh 'echo "$DOCKER_REGISTRY_CREDS_PSW" | docker login --username "$DOCKER_REGISTRY_CREDS_USR" --password-stdin docker.io'
-                                    sh 'docker-compose config --services | grep -E "${BUILD}" | xargs docker-compose push'
+                                    sh './build.sh --push'
                                 }
                                 post {
                                     always {
@@ -47,7 +59,7 @@ pipeline {
                         }
                         post {
                             always {
-                                sh 'docker-compose down -v --rmi local'
+                                sh 'docker buildx rm "${CONTEXT}"'
                                 cleanWs()
                             }
                         }
