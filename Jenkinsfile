@@ -19,7 +19,7 @@ pipeline {
                 }
                 stages {
                     stage('Build, Test, Publish') {
-                        agent { label 'my127ws' }
+                        agent { label 'my127ws-preview' }
                         stages {
                             stage('Setup') {
                                 steps {
