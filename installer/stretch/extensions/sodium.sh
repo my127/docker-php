@@ -35,7 +35,7 @@ function compile_sodium()
             echo "Skipping sodium install, unsupported php version"
             ;;
         *)
-            docker-php-ext-configure sodium --with-sodium=/usr/lib/x86_64-linux-gnu/libsodium.so.23
+            docker-php-ext-configure sodium "--with-sodium=/usr/lib/$(uname -m)-linux-gnu/libsodium.so.23"
             docker-php-ext-install sodium
             ;;
     esac

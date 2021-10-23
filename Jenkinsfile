@@ -63,7 +63,7 @@ pipeline {
             }
         }
         stage('Publish main image') {
-            agent { label "linux-amd64-preview" }
+            agent { label "linux-amd64" }
             environment {
                 DOCKER_REGISTRY_CREDS = credentials('docker-registry-credentials')
             }
