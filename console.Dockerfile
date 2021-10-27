@@ -54,9 +54,9 @@ ENV NVM_DIR /home/build/.nvm
 USER build
 RUN cd /home/build \
  && mkdir .nvm \
- && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash \
+ && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.0/install.sh | bash \
  && . /home/build/.nvm/nvm.sh \
- && nvm install lts/dubnium \
+ && nvm install 10 \
  && npm install -g yarn
 USER root
 
