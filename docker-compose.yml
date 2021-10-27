@@ -5,78 +5,79 @@ services:
   # Base Images
 
   php56-fpm-stretch-base:
-    image: my127/php:5.6-fpm-stretch
+    image: my127/php:5.6-fpm-stretch${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: base.Dockerfile
+      dockerfile: Dockerfile
+      target: base
       args:
         VERSION: 5.6
         REDIS_VERSION: 5.0
         BASEOS: stretch
 
   php70-fpm-stretch-base:
-    image: my127/php:7.0-fpm-stretch
+    image: my127/php:7.0-fpm-stretch${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: base.Dockerfile
+      target: base
       args:
         VERSION: 7.0
         REDIS_VERSION: 5.0
         BASEOS: stretch
 
   php71-fpm-stretch-base:
-    image: my127/php:7.1-fpm-stretch
+    image: my127/php:7.1-fpm-stretch${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: base.Dockerfile
+      target: base
       args:
         VERSION: 7.1
         REDIS_VERSION: 5.0
         BASEOS: stretch
 
   php72-fpm-stretch-base:
-    image: my127/php:7.2-fpm-stretch
+    image: my127/php:7.2-fpm-stretch${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: base.Dockerfile
+      target: base
       args:
         VERSION: 7.2
         REDIS_VERSION: 5.0
         BASEOS: stretch
 
   php73-fpm-stretch-base:
-    image: my127/php:7.3-fpm-stretch
+    image: my127/php:7.3-fpm-stretch${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: base.Dockerfile
+      target: base
       args:
         VERSION: 7.3
         REDIS_VERSION: 5.0
         BASEOS: stretch
 
   php73-fpm-buster-base:
-    image: my127/php:7.3-fpm-buster
+    image: my127/php:7.3-fpm-buster${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: base.Dockerfile
+      target: base
       args:
         VERSION: 7.3
         BASEOS: buster
 
   php74-fpm-buster-base:
-    image: my127/php:7.4-fpm-buster
+    image: my127/php:7.4-fpm-buster${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: base.Dockerfile
+      target: base
       args:
         VERSION: 7.4
         BASEOS: buster
 
   php80-fpm-buster-base:
-    image: my127/php:8.0-fpm-buster
+    image: my127/php:8.0-fpm-buster${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: base.Dockerfile
+      target: base
       args:
         VERSION: 8.0
         BASEOS: buster
@@ -84,10 +85,10 @@ services:
   # Console Images
 
   php56-fpm-stretch-console:
-    image: my127/php:5.6-fpm-stretch-console
+    image: my127/php:5.6-fpm-stretch-console${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: console.Dockerfile
+      target: console
       args:
         VERSION: 5.6
         REDIS_VERSION: 5.0
@@ -96,10 +97,10 @@ services:
       - php56-fpm-stretch-base
 
   php70-fpm-stretch-console:
-    image: my127/php:7.0-fpm-stretch-console
+    image: my127/php:7.0-fpm-stretch-console${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: console.Dockerfile
+      target: console
       args:
         VERSION: 7.0
         REDIS_VERSION: 5.0
@@ -108,10 +109,10 @@ services:
       - php70-fpm-stretch-base
 
   php71-fpm-stretch-console:
-    image: my127/php:7.1-fpm-stretch-console
+    image: my127/php:7.1-fpm-stretch-console${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: console.Dockerfile
+      target: console
       args:
         VERSION: 7.1
         REDIS_VERSION: 5.0
@@ -120,10 +121,10 @@ services:
       - php71-fpm-stretch-base
 
   php72-fpm-stretch-console:
-    image: my127/php:7.2-fpm-stretch-console
+    image: my127/php:7.2-fpm-stretch-console${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: console.Dockerfile
+      target: console
       args:
         VERSION: 7.2
         REDIS_VERSION: 5.0
@@ -132,10 +133,10 @@ services:
       - php72-fpm-stretch-base
 
   php73-fpm-stretch-console:
-    image: my127/php:7.3-fpm-stretch-console
+    image: my127/php:7.3-fpm-stretch-console${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: console.Dockerfile
+      target: console
       args:
         VERSION: 7.3
         REDIS_VERSION: 5.0
@@ -144,10 +145,10 @@ services:
       - php73-fpm-stretch-base
 
   php73-fpm-buster-console:
-    image: my127/php:7.3-fpm-buster-console
+    image: my127/php:7.3-fpm-buster-console${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: console.Dockerfile
+      target: console
       args:
         VERSION: 7.3
         BASEOS: buster
@@ -155,10 +156,10 @@ services:
       - php73-fpm-buster-base
 
   php74-fpm-buster-console:
-    image: my127/php:7.4-fpm-buster-console
+    image: my127/php:7.4-fpm-buster-console${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: console.Dockerfile
+      target: console
       args:
         VERSION: 7.4
         BASEOS: buster
@@ -166,10 +167,10 @@ services:
       - php74-fpm-buster-base
 
   php80-fpm-buster-console:
-    image: my127/php:8.0-fpm-buster-console
+    image: my127/php:8.0-fpm-buster-console${TAG_SUFFIX:-}
     build:
       context: ./
-      dockerfile: console.Dockerfile
+      target: console
       args:
         VERSION: 8.0
         BASEOS: buster

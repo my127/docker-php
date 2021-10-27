@@ -12,7 +12,7 @@ function compile_ldap()
 {
     _ldap_deps_build
 
-    docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/
+    docker-php-ext-configure ldap "--with-libdir=lib/$(uname -m)-linux-gnu/"
     docker-php-ext-install ldap
 
     _ldap_clean

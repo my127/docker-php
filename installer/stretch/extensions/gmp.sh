@@ -27,7 +27,7 @@ function _gmp_deps_build()
 {
     install libgmp-dev
     # Fix for gmp headers not being found, from https://superuser.com/a/1404434
-    ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
+    ln -s "/usr/include/$(uname -m)-linux-gnu/gmp.h" /usr/include/gmp.h
 }
 
 function _gmp_clean()
