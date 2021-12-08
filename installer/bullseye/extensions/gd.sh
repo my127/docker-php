@@ -39,7 +39,7 @@ function _gd_deps_runtime()
       libfreetype6 \
       libjpeg62-turbo \
       libpng16-16 \
-      zlibc
+      zlib1g
 }
 
 function _gd_deps_build()
