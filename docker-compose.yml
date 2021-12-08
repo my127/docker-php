@@ -73,6 +73,15 @@ services:
         VERSION: 7.4
         BASEOS: buster
 
+  php74-fpm-bullseye-base:
+    image: my127/php:7.4-fpm-bullseye${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: base
+      args:
+        VERSION: 7.4
+        BASEOS: bullseye
+
   php80-fpm-buster-base:
     image: my127/php:8.0-fpm-buster${TAG_SUFFIX:-}
     build:
@@ -81,6 +90,15 @@ services:
       args:
         VERSION: 8.0
         BASEOS: buster
+
+  php80-fpm-bullseye-base:
+    image: my127/php:8.0-fpm-bullseye${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: base
+      args:
+        VERSION: 8.0
+        BASEOS: bullseye
 
   # Console Images
 
@@ -166,6 +184,17 @@ services:
     depends_on:
       - php74-fpm-buster-base
 
+  php74-fpm-bullseye-console:
+    image: my127/php:7.4-fpm-bullseye-console${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: console
+      args:
+        VERSION: 7.4
+        BASEOS: bullseye
+    depends_on:
+      - php74-fpm-bullseye-base
+
   php80-fpm-buster-console:
     image: my127/php:8.0-fpm-buster-console${TAG_SUFFIX:-}
     build:
@@ -176,3 +205,14 @@ services:
         BASEOS: buster
     depends_on:
       - php80-fpm-buster-base
+
+  php80-fpm-bullseye-console:
+    image: my127/php:8.0-fpm-bullseye-console${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: console
+      args:
+        VERSION: 8.0
+        BASEOS: bullseye
+    depends_on:
+      - php80-fpm-bullseye-base
