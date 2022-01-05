@@ -19,6 +19,9 @@ function compile_mongodb()
         "7.0")
             pecl install mongodb-1.9.2
             ;;
+        "7.1")
+            pecl install mongodb-1.11.1
+            ;;
         *)
             pecl install mongodb
     esac
