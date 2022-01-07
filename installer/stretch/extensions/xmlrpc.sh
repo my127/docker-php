@@ -13,7 +13,7 @@ function compile_xmlrpc()
     _xmlrpc_deps_build
 
     case "$VERSION" in
-        "8.*")
+        8.*)
             printf "\n" | pecl install xmlrpc-1.0.0RC3
             ;;
         *)
