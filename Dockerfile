@@ -9,7 +9,7 @@ ARG BASEOS=stretch
 ENV IMAGE_TYPE=base
 RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
- && if [ "$VERSION" != "5.6" ] && [ "$VERSION" != "7.0" ] && [ "$VERSION" != "7.1" ] && [ "$BASEOS" = "stretch" ]; then \
+ && if [ "$BASEOS" = "stretch" ]; then \
    apt-get update -qq \
    && echo 'deb http://deb.debian.org/debian stretch-backports main' >> /etc/apt/sources.list.d/stetch-backports.list \
    && DEBIAN_FRONTEND=noninteractive apt-get -qq -y --no-install-recommends install \
@@ -45,12 +45,12 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
 # ---
 COPY installer/stretch /root/installer
 COPY "installer/$BASEOS" /root/installer
-RUN cd /root/installer; ./precompile.sh \
- && ./enable.sh \
+RUN cd /root/installer; ./precompile.sh
+RUN cd /root/installer; ./enable.sh \
   bcmath \
   gd \
   intl \
-  mcrypt \
+  $(dpkg --compare-versions "${PHP_VERSION}" ge 8.1 || echo mcrypt) \
   opcache \
   pdo_mysql \
   pdo_pgsql \
