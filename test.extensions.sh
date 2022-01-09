@@ -4,7 +4,9 @@ set -e
 
 cd /root/installer/
 
-alias version_compare='dpkg --compare-versions'
+function version_compare() {
+    dpkg --compare-versions "$@"
+}
 
 before="$(php -m)$(php -v)"
 echo "Before: $before"
