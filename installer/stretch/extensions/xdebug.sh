@@ -13,9 +13,8 @@ function compile_xdebug()
 (
     set -o errexit -o pipefail
 
-    local XDEBUG_PACKAGE="xdebug-2.9.8"
     case "$VERSION" in
-            "5.6")
+            5.6)
                 XDEBUG_PACKAGE="xdebug-2.5.5"
                 # Build xdebug manually to avoid a debian compiler bug
                 # https://github.com/docker-library/php/issues/133
@@ -41,14 +40,16 @@ function compile_xdebug()
                 popd
 
                 ;;
-            "7.0")
+            7.0)
                 XDEBUG_PACKAGE="xdebug-2.8.1"
                 printf "\n" | pecl install "$XDEBUG_PACKAGE"
                 ;;
-            "8.0")
-                XDEBUG_PACKAGE="xdebug"
-                ;&
+            7.*)
+                XDEBUG_PACKAGE="xdebug-2.9.8"
+                printf "\n" | pecl install "$XDEBUG_PACKAGE"
+                ;;
             *)
+                XDEBUG_PACKAGE="xdebug"
                 printf "\n" | pecl install "$XDEBUG_PACKAGE"
     esac
 )

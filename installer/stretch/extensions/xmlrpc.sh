@@ -13,8 +13,8 @@ function compile_xmlrpc()
     _xmlrpc_deps_build
 
     case "$VERSION" in
-        "8.0")
-            printf "\n" | pecl install xmlrpc-1.0.0RC2
+        8.*)
+            printf "\n" | pecl install xmlrpc-1.0.0RC3
             ;;
         *)
             docker-php-ext-install xmlrpc

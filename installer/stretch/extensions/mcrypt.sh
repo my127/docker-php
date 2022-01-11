@@ -16,15 +16,19 @@ function compile_mcrypt()
     _mcrypt_deps_build
 
     case "$VERSION" in
-        "5.6")
+        5.6)
             ;&
-        "7.0")
+        7.0)
             ;&
-        "7.1")
+        7.1)
             docker-php-ext-install mcrypt
             ;;
-        *)
+        7.*|8.0)
             printf "\n" | pecl install mcrypt
+            ;;
+        *)
+            echo "mcrypt is not supported by PHP ${VERSION}" >&2
+            ;;
     esac
 
     _mcrypt_clean

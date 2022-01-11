@@ -4,7 +4,9 @@ set -e
 
 cd /root/installer/
 
-VERSION="$(echo "$PHP_VERSION" | cut -c 1,3)"
+function version_compare() {
+    dpkg --compare-versions "$@"
+}
 
 before="$(php -m)$(php -v)"
 echo "Before: $before"
@@ -15,17 +17,23 @@ for extension in extensions/*; do
     extension_name="${extension_name#extensions/}"
 
     # These extensions aren't compiled for PHP 5.6
-    if  [ "$extension_name" = 'mongodb' ] && [ "$VERSION" -lt 70 ]; then
+    if  [ "$extension_name" = 'mongodb' ] && version_compare "$PHP_VERSION" lt 7.0; then
         echo ' skipped'
         continue
     fi
     # Sodium only available for PHP 7.2+
-    if  [ "$extension_name" = 'sodium' ] && [ "$VERSION" -lt 72 ]; then
+    if  [ "$extension_name" = 'sodium' ] && version_compare "$PHP_VERSION" lt 7.2; then
         echo ' skipped'
         continue
     fi
     # Some extensions only available for PHP <8.0
-    if  [[ "$extension_name" = 'protobuf' || "$extension_name" = 'ssh2' ]] && [ "$VERSION" -ge 80 ]; then
+    if  [[ "$extension_name" = 'protobuf' || "$extension_name" = 'ssh2' ]] && version_compare "$PHP_VERSION" ge 8.0; then
+        echo ' skipped'
+        continue
+    fi
+
+    # Some extensions only available for PHP <8.1
+    if  [[ "$extension_name" = 'mcrypt' ]] && version_compare "$PHP_VERSION" ge 8.1; then
         echo ' skipped'
         continue
     fi
