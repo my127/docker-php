@@ -91,6 +91,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
    git \
    iproute2 \
    jq \
+   $([ "${BASEOS}" = stretch ] || echo libmariadb3) \
    nano \
    nasm \
    openssh-client \
