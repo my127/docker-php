@@ -26,6 +26,6 @@ function compile_protobuf()
             printf "\n" | pecl install protobuf-3.12.4
             ;;
         *)
-            printf "\n" | pecl install protobuf
+            printf "\n" | pecl install protobuf-3.20.1RC1
     esac
 }
