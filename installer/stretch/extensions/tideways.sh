@@ -21,6 +21,8 @@ function _tideways_deps_runtime()
     install \
       tideways-php \
       "$CLI_PACKAGE"
+
+    rm -f /usr/local/etc/php/conf.d/tideways.ini || true
 }
 
 function _tideways_deps_build()
