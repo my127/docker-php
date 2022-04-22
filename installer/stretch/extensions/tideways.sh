@@ -22,7 +22,7 @@ function _tideways_deps_runtime()
       tideways-php \
       "$CLI_PACKAGE"
 
-    rm -f /usr/local/etc/php/conf.d/tideways.ini || true
+    rm -f /usr/local/etc/php/conf.d/tideways.ini
 }
 
 function _tideways_deps_build()
