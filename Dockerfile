@@ -14,11 +14,11 @@ RUN <<EOF
 
   echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends
   echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends
-  if [ "$BASEOS" = "stretch" ]; then \
+  if [ "$BASEOS" = "stretch" ]; then
     apt-get update -qq
     echo 'deb http://deb.debian.org/debian stretch-backports main' >> /etc/apt/sources.list.d/stetch-backports.list
+    # key receive dependencies
     DEBIAN_FRONTEND=noninteractive apt-get -qq -y --no-install-recommends install \
-      # key receive dependencies \
       dirmngr \
       gnupg2
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138 0E98404D386FA1D9
