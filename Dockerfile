@@ -155,10 +155,11 @@ RUN <<EOF
   cd /home/build
   mkdir .nvm
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.0/install.sh | bash
+  set +o nounset 
   . /home/build/.nvm/nvm.sh
   nvm install 10
   npm install -g yarn
-
+  set -o nounset
 
   # Tool: composer > hirak/prestissimo
   # ----------------------------------
