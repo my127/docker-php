@@ -146,7 +146,7 @@ COPY --link --from=redis /usr/local/bin/redis-cli /usr/local/bin/redis-cli
 
 ENV NVM_DIR /home/build/.nvm
 USER build
-RUN <EOF
+RUN <<EOF
   set -o errexit
   set -o nounset
 
