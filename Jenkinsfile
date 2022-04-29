@@ -3,6 +3,10 @@ pipeline {
     options {
         buildDiscarder(logRotator(daysToKeepStr: '30'))
     }
+    environment {
+        COMPOSE_DOCKER_CLI_BUILD = 1
+        DOCKER_BUILDKIT = 1
+    }
     triggers { cron(env.BRANCH_NAME ==~ /^main$/ ? 'H H(0-6) 1 * *' : '') }
     stages {
         stage('Matrix') {
