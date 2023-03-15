@@ -109,6 +109,15 @@ services:
         VERSION: 8.1
         BASEOS: bullseye
 
+  php82-fpm-bullseye-base:
+    image: my127/php:8.2-fpm-bullseye${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: base
+      args:
+        VERSION: 8.2
+        BASEOS: bullseye
+
   # Console Images
 
   php56-fpm-stretch-console:
@@ -236,3 +245,14 @@ services:
         BASEOS: bullseye
     depends_on:
       - php81-fpm-bullseye-base
+
+  php82-fpm-bullseye-console:
+    image: my127/php:8.2-fpm-bullseye-console${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: console
+      args:
+        VERSION: 8.2
+        BASEOS: bullseye
+    depends_on:
+      - php82-fpm-bullseye-base
