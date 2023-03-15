@@ -33,10 +33,10 @@ RUN <<EOF
     iproute2 \
     msmtp \
     openssl \
-    supervisor 
+    supervisor
   # clean
   apt-get remove dirmngr gnupg2 -qq -y
-  apt-get auto-remove -qq -y 
+  apt-get auto-remove -qq -y
   apt-get clean
   rm -rf /var/lib/apt/lists/*
   curl --fail --silent --location --output /sbin/tini "https://github.com/krallin/tini/releases/download/v0.19.0/tini-$(dpkg --print-architecture)"
@@ -56,7 +56,7 @@ RUN cd /root/installer; ./enable.sh \
   bcmath \
   gd \
   intl \
-  $(dpkg --compare-versions "${PHP_VERSION}" ge 8.1 || echo mcrypt) \
+  mcrypt \
   opcache \
   pdo_mysql \
   pdo_pgsql \
@@ -88,10 +88,10 @@ RUN <<EOF
   echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends
   echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends
   apt-get update -qq
-  for i in $(seq 1 8); do 
+  for i in $(seq 1 8); do
     mkdir -p "/usr/share/man/man$i"
   done
-  
+
   # package dependencies
   DEBIAN_FRONTEND=noninteractive apt-get -qq -y --no-install-recommends install \
     autoconf \
@@ -155,7 +155,7 @@ RUN <<EOF
   cd /home/build
   mkdir .nvm
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.0/install.sh | bash
-  set +o nounset 
+  set +o nounset
   . /home/build/.nvm/nvm.sh
   nvm install 10
   npm install -g yarn
