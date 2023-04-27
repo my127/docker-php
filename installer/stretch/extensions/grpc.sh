@@ -20,7 +20,7 @@ function compile_grpc()
     *)
         case "$BASEOS" in
         stretch)
-            PACKAGE_NAME="grpc-1.53.0"
+            PACKAGE_NAME="grpc-1.52.1"
             ;;
         esac     
     esac
