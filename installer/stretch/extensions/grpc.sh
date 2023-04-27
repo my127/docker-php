@@ -19,7 +19,7 @@ function compile_grpc()
         ;;
     *)
         case "$BASEOS" in
-        stretch|buster)
+        stretch)
             PACKAGE_NAME="grpc-1.53.0"
             ;;
         esac     
