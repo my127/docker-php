@@ -18,7 +18,6 @@ RUN <<EOF
     cat <<EOD > /etc/apt/sources.list
 deb http://archive.debian.org/debian stretch main
 deb http://archive.debian.org/debian-security stretch/updates main
-deb http://archive.debian.org/debian stretch-updates main
 EOD
     apt-get update -qq
     echo 'deb http://archive.debian.org/debian stretch-backports main' >> /etc/apt/sources.list.d/stetch-backports.list
