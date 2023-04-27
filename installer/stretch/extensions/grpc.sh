@@ -14,9 +14,15 @@ function compile_grpc()
 
     PACKAGE_NAME="grpc"
     case "$VERSION" in
-            "5.6")
-                PACKAGE_NAME="grpc-1.33.1"
-                ;;
+    "5.6")
+        PACKAGE_NAME="grpc-1.33.1"
+        ;;
+    *)
+        case "$BASEOS" in
+        stretch|buster)
+            PACKAGE_NAME="grpc-1.53.0"
+            ;;
+        esac     
     esac
 
     pecl install "$PACKAGE_NAME"
