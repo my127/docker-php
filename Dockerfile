@@ -1,12 +1,12 @@
 # syntax=docker/dockerfile:1.4
 ARG VERSION=7.3
-ARG BASEOS=stretch
+ARG BASEOS=bullseye
 ARG REDIS_VERSION=6.2
 FROM php:${VERSION}-fpm-${BASEOS} as base
 
 # Base Packages
 # ---
-ARG BASEOS=stretch
+ARG BASEOS=bullseye
 ENV IMAGE_TYPE=base
 RUN <<EOF
   set -o errexit
@@ -53,7 +53,7 @@ EOF
 
 # PHP
 # ---
-COPY --link installer/stretch /root/installer
+COPY --link installer/base /root/installer
 COPY --link "installer/$BASEOS" /root/installer
 RUN cd /root/installer; ./precompile.sh
 RUN cd /root/installer; ./enable.sh \
