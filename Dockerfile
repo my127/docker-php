@@ -163,11 +163,14 @@ RUN <<EOF
   cd /home/build
   mkdir .nvm
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.0/install.sh | bash
-  set +o nounset
-  . /home/build/.nvm/nvm.sh
-  nvm install "${NODE_VERSION}"
-  npm install -g yarn
-  set -o nounset
+
+  if [ "${NODE_VERSION:-}" ]; then
+    set +o nounset
+    . /home/build/.nvm/nvm.sh
+    nvm install "${NODE_VERSION}"
+    npm install -g yarn
+    set -o nounset
+  fi
 
   # Tool: composer > hirak/prestissimo
   # ----------------------------------
