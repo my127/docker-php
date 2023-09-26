@@ -87,6 +87,7 @@ FROM base as console
 STOPSIGNAL SIGTERM
 
 ARG BASEOS
+ARG NODE_VERSION
 ENV IMAGE_TYPE=console
 RUN <<EOF
   set -o errexit
@@ -164,7 +165,7 @@ RUN <<EOF
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.0/install.sh | bash
   set +o nounset
   . /home/build/.nvm/nvm.sh
-  nvm install 10
+  nvm install "${NODE_VERSION}"
   npm install -g yarn
   set -o nounset
 
