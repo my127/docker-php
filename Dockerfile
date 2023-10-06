@@ -25,7 +25,10 @@ EOD
     DEBIAN_FRONTEND=noninteractive apt-get -qq -y --no-install-recommends install \
       dirmngr \
       gnupg2
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138 0E98404D386FA1D9
+    export GNUPGHOME="$(mktemp -d)"
+    echo "disable-ipv6" >> "$GNUPGHOME/dirmngr.conf"
+    apt-key adv --homedir "$GNUPGHOME" --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138 0E98404D386FA1D9
+    rm -rf "$GNUPGHOME"
   fi
   apt-get update -qq
   apt-get upgrade -qq -y
