@@ -15,10 +15,6 @@ for extension in extensions/*; do
     echo -n "Installing ${extension}..."
     extension_name="${extension%.sh}"
     extension_name="${extension_name#extensions/}"
-    if  [ "$extension_name" = 'grpc' ]; then
-        echo ' skipped'
-        continue
-    fi
 
     # These extensions aren't compiled for PHP 5.6
     if  [ "$extension_name" = 'mongodb' ] && version_compare "$PHP_VERSION" lt 7.0; then
