@@ -150,6 +150,16 @@ services:
         NODE_VERSION: 10
         BASEOS: bookworm
 
+  php83-fpm-bookworm-base:
+    image: my127/php:8.3-fpm-bookworm${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: base
+      args:
+        VERSION: 8.3
+        REDIS_VERSION: 7.2
+        BASEOS: bookworm
+
   # Console Images
 
   php56-fpm-stretch-console:
@@ -295,4 +305,14 @@ services:
       args:
         VERSION: 8.2
         NODE_VERSION: 10
+        BASEOS: bookworm
+
+  php83-fpm-bookworm-console:
+    image: my127/php:8.3-fpm-bookworm-console${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: console
+      args:
+        VERSION: 8.3
+        REDIS_VERSION: 7.2
         BASEOS: bookworm
