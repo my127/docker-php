@@ -12,6 +12,7 @@ services:
       target: base
       args:
         VERSION: 5.6
+        NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
 
@@ -22,6 +23,7 @@ services:
       target: base
       args:
         VERSION: 7.0
+        NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
 
@@ -32,6 +34,7 @@ services:
       target: base
       args:
         VERSION: 7.1
+        NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
 
@@ -42,6 +45,7 @@ services:
       target: base
       args:
         VERSION: 7.2
+        NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
 
@@ -52,6 +56,7 @@ services:
       target: base
       args:
         VERSION: 7.3
+        NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
 
@@ -62,6 +67,7 @@ services:
       target: base
       args:
         VERSION: 7.3
+        NODE_VERSION: 10
         BASEOS: buster
 
   php74-fpm-buster-base:
@@ -71,6 +77,7 @@ services:
       target: base
       args:
         VERSION: 7.4
+        NODE_VERSION: 10
         BASEOS: buster
 
   php74-fpm-bullseye-base:
@@ -80,6 +87,7 @@ services:
       target: base
       args:
         VERSION: 7.4
+        NODE_VERSION: 10
         BASEOS: bullseye
 
   php80-fpm-buster-base:
@@ -89,6 +97,7 @@ services:
       target: base
       args:
         VERSION: 8.0
+        NODE_VERSION: 10
         BASEOS: buster
 
   php80-fpm-bullseye-base:
@@ -98,6 +107,7 @@ services:
       target: base
       args:
         VERSION: 8.0
+        NODE_VERSION: 10
         BASEOS: bullseye
 
   php81-fpm-bullseye-base:
@@ -107,6 +117,7 @@ services:
       target: base
       args:
         VERSION: 8.1
+        NODE_VERSION: 10
         BASEOS: bullseye
 
   php81-fpm-bookworm-base:
@@ -116,6 +127,7 @@ services:
       target: base
       args:
         VERSION: 8.1
+        NODE_VERSION: 10
         BASEOS: bookworm
 
   php82-fpm-bullseye-base:
@@ -125,6 +137,7 @@ services:
       target: base
       args:
         VERSION: 8.2
+        NODE_VERSION: 10
         BASEOS: bullseye
 
   php82-fpm-bookworm-base:
@@ -134,6 +147,7 @@ services:
       target: base
       args:
         VERSION: 8.2
+        NODE_VERSION: 10
         BASEOS: bookworm
 
   # Console Images
@@ -145,6 +159,7 @@ services:
       target: console
       args:
         VERSION: 5.6
+        NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
     depends_on:
@@ -157,6 +172,7 @@ services:
       target: console
       args:
         VERSION: 7.0
+        NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
     depends_on:
@@ -169,6 +185,7 @@ services:
       target: console
       args:
         VERSION: 7.1
+        NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
     depends_on:
@@ -181,6 +198,7 @@ services:
       target: console
       args:
         VERSION: 7.2
+        NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
     depends_on:
@@ -193,6 +211,7 @@ services:
       target: console
       args:
         VERSION: 7.3
+        NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
     depends_on:
@@ -205,6 +224,7 @@ services:
       target: console
       args:
         VERSION: 7.3
+        NODE_VERSION: 10
         BASEOS: buster
     depends_on:
       - php73-fpm-buster-base
@@ -216,6 +236,7 @@ services:
       target: console
       args:
         VERSION: 7.4
+        NODE_VERSION: 10
         BASEOS: buster
     depends_on:
       - php74-fpm-buster-base
@@ -227,6 +248,7 @@ services:
       target: console
       args:
         VERSION: 7.4
+        NODE_VERSION: 10
         BASEOS: bullseye
     depends_on:
       - php74-fpm-bullseye-base
@@ -238,6 +260,7 @@ services:
       target: console
       args:
         VERSION: 8.0
+        NODE_VERSION: 10
         BASEOS: buster
     depends_on:
       - php80-fpm-buster-base
@@ -249,6 +272,7 @@ services:
       target: console
       args:
         VERSION: 8.0
+        NODE_VERSION: 10
         BASEOS: bullseye
     depends_on:
       - php80-fpm-bullseye-base
@@ -260,6 +284,7 @@ services:
       target: console
       args:
         VERSION: 8.1
+        NODE_VERSION: 10
         BASEOS: bullseye
     depends_on:
       - php81-fpm-bullseye-base
@@ -271,6 +296,7 @@ services:
       target: console
       args:
         VERSION: 8.1
+        NODE_VERSION: 10
         BASEOS: bookworm
     depends_on:
       - php81-fpm-bookworm-base
@@ -282,6 +308,7 @@ services:
       target: console
       args:
         VERSION: 8.2
+        NODE_VERSION: 10
         BASEOS: bullseye
     depends_on:
       - php82-fpm-bullseye-base
@@ -293,6 +320,7 @@ services:
       target: console
       args:
         VERSION: 8.2
+        NODE_VERSION: 10
         BASEOS: bookworm
     depends_on:
       - php82-fpm-bookworm-base
