@@ -2,6 +2,13 @@
 
 function install_imagick()
 {
+    case "$VERSION" in
+        "8.3")
+            echo "Skipping imagick enable, unsupported php version"
+            return 0
+            ;;
+    esac
+
     _imagick_deps_runtime
     if ! has_extension imagick; then
         compile_imagick true
@@ -13,6 +20,13 @@ function install_imagick()
 function compile_imagick()
 {
     local KEEP_DEPS="${1:-}"
+
+    case "$VERSION" in
+        "8.3")
+            echo "Skipping imagick enable, unsupported php version"
+            return 0
+            ;;
+    esac
 
     _imagick_deps_build
     _imagick_deps_runtime
