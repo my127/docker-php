@@ -162,8 +162,6 @@ services:
         NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
-    depends_on:
-      - php56-fpm-stretch-base
 
   php70-fpm-stretch-console:
     image: my127/php:7.0-fpm-stretch-console${TAG_SUFFIX:-}
@@ -175,8 +173,6 @@ services:
         NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
-    depends_on:
-      - php70-fpm-stretch-base
 
   php71-fpm-stretch-console:
     image: my127/php:7.1-fpm-stretch-console${TAG_SUFFIX:-}
@@ -188,8 +184,6 @@ services:
         NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
-    depends_on:
-      - php71-fpm-stretch-base
 
   php72-fpm-stretch-console:
     image: my127/php:7.2-fpm-stretch-console${TAG_SUFFIX:-}
@@ -201,8 +195,6 @@ services:
         NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
-    depends_on:
-      - php72-fpm-stretch-base
 
   php73-fpm-stretch-console:
     image: my127/php:7.3-fpm-stretch-console${TAG_SUFFIX:-}
@@ -214,8 +206,6 @@ services:
         NODE_VERSION: 10
         REDIS_VERSION: 5.0
         BASEOS: stretch
-    depends_on:
-      - php73-fpm-stretch-base
 
   php73-fpm-buster-console:
     image: my127/php:7.3-fpm-buster-console${TAG_SUFFIX:-}
@@ -226,8 +216,6 @@ services:
         VERSION: 7.3
         NODE_VERSION: 10
         BASEOS: buster
-    depends_on:
-      - php73-fpm-buster-base
 
   php74-fpm-buster-console:
     image: my127/php:7.4-fpm-buster-console${TAG_SUFFIX:-}
@@ -238,8 +226,6 @@ services:
         VERSION: 7.4
         NODE_VERSION: 10
         BASEOS: buster
-    depends_on:
-      - php74-fpm-buster-base
 
   php74-fpm-bullseye-console:
     image: my127/php:7.4-fpm-bullseye-console${TAG_SUFFIX:-}
@@ -250,8 +236,6 @@ services:
         VERSION: 7.4
         NODE_VERSION: 10
         BASEOS: bullseye
-    depends_on:
-      - php74-fpm-bullseye-base
 
   php80-fpm-buster-console:
     image: my127/php:8.0-fpm-buster-console${TAG_SUFFIX:-}
@@ -262,8 +246,6 @@ services:
         VERSION: 8.0
         NODE_VERSION: 10
         BASEOS: buster
-    depends_on:
-      - php80-fpm-buster-base
 
   php80-fpm-bullseye-console:
     image: my127/php:8.0-fpm-bullseye-console${TAG_SUFFIX:-}
@@ -274,8 +256,6 @@ services:
         VERSION: 8.0
         NODE_VERSION: 10
         BASEOS: bullseye
-    depends_on:
-      - php80-fpm-bullseye-base
 
   php81-fpm-bullseye-console:
     image: my127/php:8.1-fpm-bullseye-console${TAG_SUFFIX:-}
@@ -286,8 +266,6 @@ services:
         VERSION: 8.1
         NODE_VERSION: 10
         BASEOS: bullseye
-    depends_on:
-      - php81-fpm-bullseye-base
 
   php81-fpm-bookworm-console:
     image: my127/php:8.1-fpm-bookworm-console${TAG_SUFFIX:-}
@@ -298,8 +276,6 @@ services:
         VERSION: 8.1
         NODE_VERSION: 10
         BASEOS: bookworm
-    depends_on:
-      - php81-fpm-bookworm-base
 
   php82-fpm-bullseye-console:
     image: my127/php:8.2-fpm-bullseye-console${TAG_SUFFIX:-}
@@ -310,8 +286,6 @@ services:
         VERSION: 8.2
         NODE_VERSION: 10
         BASEOS: bullseye
-    depends_on:
-      - php82-fpm-bullseye-base
 
   php82-fpm-bookworm-console:
     image: my127/php:8.2-fpm-bookworm-console${TAG_SUFFIX:-}
@@ -322,5 +296,3 @@ services:
         VERSION: 8.2
         NODE_VERSION: 10
         BASEOS: bookworm
-    depends_on:
-      - php82-fpm-bookworm-base
