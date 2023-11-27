@@ -20,7 +20,7 @@ function compile_xdebug()
                 # https://github.com/docker-library/php/issues/133
                 pushd /usr/src
 
-                curl --fail --silent --show-error "https://xdebug.org/files/${XDEBUG_PACKAGE}.tgz" -o "${XDEBUG_PACKAGE}.tgz"
+                curl --fail --silent --show-error --location "https://xdebug.org/files/${XDEBUG_PACKAGE}.tgz" -o "${XDEBUG_PACKAGE}.tgz"
                 echo "72108bf2bc514ee7198e10466a0fedcac3df9bbc5bd26ce2ec2dafab990bf1a4" "${XDEBUG_PACKAGE}.tgz" | sha256sum --check
                 tar -xzvf "${XDEBUG_PACKAGE}.tgz"
 
