@@ -26,11 +26,6 @@ for extension in extensions/*; do
         echo ' skipped'
         continue
     fi
-    # Some extensions only available for PHP <8.0
-    if  [[ "$extension_name" = 'protobuf' || "$extension_name" = 'ssh2' ]] && version_compare "$PHP_VERSION" ge 8.0; then
-        echo ' skipped'
-        continue
-    fi
 
     # Some extensions only available for PHP <8.1
     if  [[ "$extension_name" = 'mcrypt' ]] && version_compare "$PHP_VERSION" ge 8.1; then
