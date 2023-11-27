@@ -27,12 +27,6 @@ for extension in extensions/*; do
         continue
     fi
 
-    # Some extensions only available for PHP <8.1
-    if  [[ "$extension_name" = 'mcrypt' ]] && version_compare "$PHP_VERSION" ge 8.1; then
-        echo ' skipped'
-        continue
-    fi
-
     # NewRelic PHP agent is currently not supporting other architectures than x86_64 / amd64
     if  [ "$extension_name" = 'newrelic' ] && [ "$(uname -m)" != x86_64 ]; then
         echo ' skipped'
