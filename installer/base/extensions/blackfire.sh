@@ -17,7 +17,7 @@ function install_blackfire_probe()
 {
     local version
     version="$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;")"
-    curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s "https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version"
+    curl --fail --silent --show-error --user-agent "Docker" --output /tmp/blackfire-probe.tar.gz --dump-header - "https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version"
     mkdir -p /tmp/blackfire
     tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp/blackfire
     mv /tmp/blackfire/blackfire-*.so "$(php -r "echo ini_get('extension_dir');")/blackfire.so"
@@ -28,7 +28,7 @@ function install_blackfire_probe()
 function install_blackfire_cli()
 {
     mkdir -p /tmp/blackfire-cli
-    curl -A "Docker" -o /tmp/blackfire-cli.tar.gz -L https://blackfire.io/api/v1/releases/client/linux_static/amd64
+    curl --fail --silent --show-error --user-agent "Docker" --output /tmp/blackfire-cli.tar.gz https://blackfire.io/api/v1/releases/client/linux_static/amd64
     tar zxpf /tmp/blackfire-cli.tar.gz -C /tmp/blackfire-cli
     mv /tmp/blackfire-cli/blackfire /usr/bin/blackfire
     rm -rf /tmp/blackfire-cli /tmp/blackfire-cli.tar.gz

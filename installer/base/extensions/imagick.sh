@@ -20,7 +20,7 @@ function compile_imagick()
     case "$VERSION" in
             "8.0")
                 set -e
-                curl -f -sS -L -o /tmp/imagick.zip https://github.com/Imagick/imagick/archive/c5b8086b5d96c7030e6d4e6ea9a5ef49055d8273.zip
+                curl --fail --silent --show-error --location --output /tmp/imagick.zip https://github.com/Imagick/imagick/archive/c5b8086b5d96c7030e6d4e6ea9a5ef49055d8273.zip
                 cd /tmp/
                 unzip imagick.zip
                 cd /tmp/imagick-*

@@ -137,7 +137,7 @@ RUN <<EOF
 
   # Tool: composer
   # --------------
-  curl --silent --fail --location --retry 3 --output /tmp/composer-installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/650bee119e1f3b87be1b787fe69a826f73dbdfb9/web/installer
+  curl --fail --silent --show-error --location --retry 3 --output /tmp/composer-installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/650bee119e1f3b87be1b787fe69a826f73dbdfb9/web/installer
   php -r '
     $signature = "906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8";
     $hash = hash("sha384", file_get_contents("/tmp/composer-installer.php"));
@@ -162,7 +162,7 @@ RUN <<EOF
   # -------------------------------------
   cd /home/build
   mkdir .nvm
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.0/install.sh | bash
+  curl --fail --silent --show-error --location --output - https://raw.githubusercontent.com/creationix/nvm/v0.39.0/install.sh | bash
 
   if [ "${NODE_VERSION:-}" ]; then
     set +o nounset
