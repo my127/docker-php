@@ -6,13 +6,6 @@ function install_ssh2()
         compile_ssh2
     fi
 
-    case "$VERSION" in
-        "8.0")
-            echo "Skipping ssh2 enable, unsupported php version"
-            return 0
-            ;;
-    esac
-
     docker-php-ext-enable ssh2
 }
 
@@ -20,15 +13,11 @@ function compile_ssh2()
 {
     _ssh2_deps_build
     case "$VERSION" in
-        "8.0")
-            echo "Skipping ssh2 installation due to unsupported php version"
-            ;;
         "5.6")
             printf "\n" | pecl install ssh2-0.13
             ;;
         *)
-            # beta release, so need to specify version number
-            printf "\n" | pecl install ssh2-1.2
+            printf "\n" | pecl install ssh2
     esac
 
     _ssh2_clean

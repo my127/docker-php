@@ -47,7 +47,7 @@ pipeline {
                                 }
                                 steps {
                                     sh 'echo "$DOCKER_REGISTRY_CREDS_PSW" | docker login --username "$DOCKER_REGISTRY_CREDS_USR" --password-stdin docker.io'
-                                    sh 'docker-compose config --services | grep -E "${BUILD}" | xargs docker-compose push'
+                                    sh 'docker compose config --services | grep -E "${BUILD}" | xargs docker compose push'
                                 }
                                 post {
                                     always {
@@ -58,7 +58,7 @@ pipeline {
                         }
                         post {
                             always {
-                                sh 'docker-compose down -v --rmi local'
+                                sh 'docker compose down -v --rmi local'
                                 cleanWs()
                             }
                         }
