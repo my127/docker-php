@@ -28,7 +28,7 @@ for extension in extensions/*; do
     fi
 
     # Some extensions not yet ready for PHP 8.3
-    if  [[ "$extension_name" = 'imagick' ]] && version_compare "$PHP_VERSION" ge 8.3; then
+    if  [[ "$extension_name" = 'imagick' || "$extension_name" = 'mcrypt' ]] && version_compare "$PHP_VERSION" ge 8.3; then
         echo ' skipped'
         continue
     fi

@@ -23,7 +23,7 @@ function compile_mcrypt()
         7.1)
             docker-php-ext-install mcrypt
             ;;
-        7.*|8.*)
+        7.*|8.[012])
             printf "\n" | pecl install mcrypt
             ;;
         *)
