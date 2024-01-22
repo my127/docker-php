@@ -1,7 +1,7 @@
 pipeline {
     agent none
     options {
-        buildDiscarder(logRotator(daysToKeepStr: "${Integer.toString(30*6)}"))
+        buildDiscarder(logRotator(daysToKeepStr: "${30*6}"))
     }
     environment {
         COMPOSE_DOCKER_CLI_BUILD = 1
