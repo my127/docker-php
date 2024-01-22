@@ -10,16 +10,5 @@ function install_redis()
 
 function compile_redis()
 {
-    case "$VERSION" in
-            "5.6")
-                printf "\n" | pecl install -o -f redis-2.2.8
-                ;;
-            "7.0")
-                ;&
-            "7.1")
-                printf "\n" | pecl install -o -f redis-5.3.7
-                ;;
-            *)
-                printf "\n" | pecl install -o -f redis
-    esac
+    printf "\n" | pecl install -o -f redis
 }

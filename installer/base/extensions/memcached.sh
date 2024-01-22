@@ -15,13 +15,8 @@ function compile_memcached()
 {
     _memcached_deps_build
 
-    case "$VERSION" in
-            "5.6")
-                printf "\n" | pecl install memcached-2.2.0
-                ;;
-            *)
-                printf "\n" | pecl install memcached
-    esac
+    printf "\n" | pecl install memcached
+
     _memcached_clean
 }
 

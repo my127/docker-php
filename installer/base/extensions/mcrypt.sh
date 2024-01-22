@@ -16,13 +16,6 @@ function compile_mcrypt()
     _mcrypt_deps_build
 
     case "$VERSION" in
-        5.6)
-            ;&
-        7.0)
-            ;&
-        7.1)
-            docker-php-ext-install mcrypt
-            ;;
         7.*|8.[012])
             printf "\n" | pecl install mcrypt
             ;;

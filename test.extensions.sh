@@ -16,17 +16,6 @@ for extension in extensions/*; do
     extension_name="${extension%.sh}"
     extension_name="${extension_name#extensions/}"
 
-    # These extensions aren't compiled for PHP 5.6
-    if  [ "$extension_name" = 'mongodb' ] && version_compare "$PHP_VERSION" lt 7.0; then
-        echo ' skipped'
-        continue
-    fi
-    # Sodium only available for PHP 7.2+
-    if  [ "$extension_name" = 'sodium' ] && version_compare "$PHP_VERSION" lt 7.2; then
-        echo ' skipped'
-        continue
-    fi
-
     # Some extensions not yet ready for PHP 8.3
     if  [[ "$extension_name" = 'imagick' || "$extension_name" = 'mcrypt' ]] && version_compare "$PHP_VERSION" ge 8.3; then
         echo ' skipped'

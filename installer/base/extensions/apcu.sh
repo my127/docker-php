@@ -10,11 +10,5 @@ function install_apcu()
 
 function compile_apcu()
 {
-    case "$VERSION" in
-            "5.6")
-                printf "\n" | pecl install apcu-4.0.11
-                ;;
-            *)
-                printf "\n" | pecl install apcu
-    esac
+    printf "\n" | pecl install apcu
 }

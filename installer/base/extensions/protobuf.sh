@@ -12,9 +12,6 @@ function install_protobuf()
 function compile_protobuf()
 {
     case "$VERSION" in
-        "5.6")
-            printf "\n" | pecl install protobuf-3.12.4
-            ;;
         7.*)
             printf "\n" | pecl install protobuf-3.20.1
             ;;
