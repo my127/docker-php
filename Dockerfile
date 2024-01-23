@@ -14,22 +14,6 @@ RUN <<EOF
 
   echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends
   echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends
-  if [ "$BASEOS" = "stretch" ]; then
-    cat <<EOD > /etc/apt/sources.list
-deb http://archive.debian.org/debian stretch main
-deb http://archive.debian.org/debian-security stretch/updates main
-EOD
-    apt-get update -qq
-    echo 'deb http://archive.debian.org/debian stretch-backports main' >> /etc/apt/sources.list.d/stetch-backports.list
-    # key receive dependencies
-    DEBIAN_FRONTEND=noninteractive apt-get -qq -y --no-install-recommends install \
-      dirmngr \
-      gnupg2
-    export GNUPGHOME="$(mktemp -d)"
-    echo "disable-ipv6" >> "$GNUPGHOME/dirmngr.conf"
-    apt-key adv --homedir "$GNUPGHOME" --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138 0E98404D386FA1D9
-    rm -rf "$GNUPGHOME"
-  fi
   apt-get update -qq
   apt-get upgrade -qq -y
   # package dependencies
@@ -112,7 +96,7 @@ RUN <<EOF
     git \
     iproute2 \
     jq \
-    $([ "${BASEOS}" = stretch ] || echo libmariadb3) \
+    libmariadb3 \
     nano \
     nasm \
     openssh-client \

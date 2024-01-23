@@ -12,13 +12,8 @@ function install_ssh2()
 function compile_ssh2()
 {
     _ssh2_deps_build
-    case "$VERSION" in
-        "5.6")
-            printf "\n" | pecl install ssh2-0.13
-            ;;
-        *)
-            printf "\n" | pecl install ssh2
-    esac
+    
+    printf "\n" | pecl install ssh2
 
     _ssh2_clean
 }

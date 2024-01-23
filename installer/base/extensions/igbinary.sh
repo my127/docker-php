@@ -10,11 +10,5 @@ function install_igbinary()
 
 function compile_igbinary()
 {
-    case "$VERSION" in
-            "5.6")
-                printf "\n" | pecl install igbinary-2.0.8
-                ;;
-            *)
-                printf "\n" | pecl install igbinary
-    esac
+    printf "\n" | pecl install igbinary
 }
