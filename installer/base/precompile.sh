@@ -11,7 +11,7 @@ source ./lib/functions.sh
 function main()
 {
     local KEEPALIVE_PID
-    for extension in extensions/*
+    for extension in extensions/*.sh
     do
         extension_name="${extension%.sh}"
         extension_name="${extension_name#extensions/}"

@@ -11,13 +11,13 @@ function version_compare() {
 before="$(php -m)$(php -v)"
 echo "Before: $before"
 
-for extension in extensions/*; do
+for extension in extensions/*.sh; do
     echo -n "Installing ${extension}..."
     extension_name="${extension%.sh}"
     extension_name="${extension_name#extensions/}"
 
     # Some extensions not yet ready for PHP 8.3
-    if  [[ "$extension_name" = 'imagick' || "$extension_name" = 'mcrypt' ]] && version_compare "$PHP_VERSION" ge 8.3; then
+    if  [[ "$extension_name" = 'mcrypt' ]] && version_compare "$PHP_VERSION" ge 8.3; then
         echo ' skipped'
         continue
     fi
