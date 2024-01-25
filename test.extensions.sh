@@ -11,7 +11,7 @@ function version_compare() {
 before="$(php -m)$(php -v)"
 echo "Before: $before"
 
-for extension in extensions/*; do
+for extension in extensions/*.sh; do
     echo -n "Installing ${extension}..."
     extension_name="${extension%.sh}"
     extension_name="${extension_name#extensions/}"
