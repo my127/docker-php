@@ -19,13 +19,17 @@ function compile_gd()
                   --with-gd \
                   --with-freetype-dir=/usr/include/ \
                   --with-png-dir=/usr/include/ \
-                  --with-jpeg-dir=/usr/include/
+                  --with-jpeg-dir=/usr/include/ \
+                  --with-webp-dir=/usr/include/ \
+                  --with-xpm-dir=/usr/include/
                 ;;
             *)
                 docker-php-ext-configure gd \
                   --enable-gd \
                   --with-freetype \
-                  --with-jpeg
+                  --with-jpeg \
+                  --with-webp \
+                  --with-xpm
     esac
 
     docker-php-ext-install gd
@@ -39,6 +43,8 @@ function _gd_deps_runtime()
       libfreetype6 \
       libjpeg62-turbo \
       libpng16-16 \
+      libwebp6 \
+      libxpm4 \
       zlib1g
 }
 
@@ -48,6 +54,8 @@ function _gd_deps_build()
       libfreetype6-dev \
       libjpeg62-turbo-dev \
       libpng-dev \
+      libwebp-dev \
+      libxpm-dev \
       zlib1g-dev
 }
 
@@ -56,5 +64,7 @@ function _gd_clean()
     remove \
       libfreetype6-dev \
       libjpeg62-turbo-dev \
-      libpng-dev
+      libpng-dev \
+      libwebp-dev \
+      libxpm-dev
 }
