@@ -15,14 +15,7 @@ function compile_mcrypt()
 {
     _mcrypt_deps_build
 
-    case "$VERSION" in
-        7.*|8.[012])
-            printf "\n" | pecl install mcrypt
-            ;;
-        *)
-            echo "mcrypt is not supported by PHP ${VERSION}" >&2
-            ;;
-    esac
+    printf "\n" | pecl install mcrypt
 
     _mcrypt_clean
 }

@@ -2,13 +2,6 @@
 
 function install_imagick()
 {
-    case "$VERSION" in
-        "8.3")
-            echo "Skipping imagick enable, unsupported php version"
-            return 0
-            ;;
-    esac
-
     _imagick_deps_runtime
     if ! has_extension imagick; then
         compile_imagick true
@@ -21,35 +14,21 @@ function compile_imagick()
 {
     local KEEP_DEPS="${1:-}"
 
-    case "$VERSION" in
-        "8.3")
-            echo "Skipping imagick enable, unsupported php version"
-            return 0
-            ;;
-    esac
-
     _imagick_deps_build
     _imagick_deps_runtime
 
-    case "$VERSION" in
-            "8.0")
-                set -e
-                curl --fail --silent --show-error --location --output /tmp/imagick.zip https://github.com/Imagick/imagick/archive/c5b8086b5d96c7030e6d4e6ea9a5ef49055d8273.zip
-                cd /tmp/
-                unzip imagick.zip
-                cd /tmp/imagick-*
-                phpize
-                ./configure
-                make
-                make install
-                cd /root/installer
-                rm -rf /tmp/imagick*
-                ;;
-            *)
-                if ! printf "\n" | pecl install imagick; then
-                    return 1
-                fi
-    esac
+    set -e
+    cd /tmp/
+    pecl download imagick-3.7.0
+    tar -xzf imagick*.tgz
+    cd /tmp/imagick-*/
+    patch -p1 < /root/installer/extensions/patches/imagick-preprocessor-fix.patch
+    phpize
+    ./configure
+    make
+    make install
+    cd /root/installer
+    rm -rf /tmp/imagick*
 
     if [ -z "$KEEP_DEPS" ]; then
         _imagick_clean_runtime
