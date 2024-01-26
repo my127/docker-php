@@ -39,11 +39,16 @@ function compile_gd()
 
 function _gd_deps_runtime()
 {
+    local WEBP_PACKAGE=libwebp7
+    if [ "$BASEOS" = buster ] || [ "$BASEOS" = bullseye ]; then
+      WEBP_PACKAGE=libwebp6
+    fi
+
     install \
       libfreetype6 \
       libjpeg62-turbo \
       libpng16-16 \
-      libwebp6 \
+      "$WEBP_PACKAGE" \
       libxpm4 \
       zlib1g
 }
@@ -66,5 +71,6 @@ function _gd_clean()
       libjpeg62-turbo-dev \
       libpng-dev \
       libwebp-dev \
-      libxpm-dev
+      libxpm-dev \
+      zlib1g-dev
 }
