@@ -16,12 +16,6 @@ for extension in extensions/*.sh; do
     extension_name="${extension%.sh}"
     extension_name="${extension_name#extensions/}"
 
-    # Some extensions not yet ready for PHP 8.3
-    if  [[ "$extension_name" = 'mcrypt' ]] && version_compare "$PHP_VERSION" ge 8.3; then
-        echo ' skipped'
-        continue
-    fi
-
     # NewRelic PHP agent is currently not supporting other architectures than x86_64 / amd64
     if  [ "$extension_name" = 'newrelic' ] && [ "$(uname -m)" != x86_64 ]; then
         echo ' skipped'
