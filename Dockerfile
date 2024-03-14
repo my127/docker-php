@@ -71,6 +71,7 @@ FROM base as console
 STOPSIGNAL SIGTERM
 
 ARG BASEOS
+ARG COMPOSER_VERSION
 ARG NODE_VERSION
 ENV IMAGE_TYPE=console
 RUN <<EOF
@@ -121,16 +122,16 @@ RUN <<EOF
 
   # Tool: composer
   # --------------
-  curl --fail --silent --show-error --location --retry 3 --output /tmp/composer-installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/650bee119e1f3b87be1b787fe69a826f73dbdfb9/web/installer
+  curl --fail --silent --show-error --location --retry 3 --output /tmp/composer-installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/993f9fec74930f32f7015e71543243bf6d9b9e93/web/installer
   php -r '
-    $signature = "906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8";
+    $signature = "dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6";
     $hash = hash("sha384", file_get_contents("/tmp/composer-installer.php"));
     if (!hash_equals($signature, $hash)) {
         unlink("/tmp/composer-installer.php");
         echo "Integrity check failed, installer is either corrupt or worse." . PHP_EOL;
         exit(1);
     }'
-  php /tmp/composer-installer.php --no-ansi --install-dir=/usr/bin --filename=composer --version=1.10.26
+  php /tmp/composer-installer.php --no-ansi --install-dir=/usr/bin --filename=composer --version="$COMPOSER_VERSION"
   rm /tmp/composer-installer.php
 EOF
 
@@ -146,7 +147,9 @@ RUN <<EOF
   # -------------------------------------
   cd /home/build
   mkdir .nvm
-  curl --fail --silent --show-error --location --output - https://raw.githubusercontent.com/creationix/nvm/v0.39.0/install.sh | bash
+  curl --fail --silent --show-error --location --output /tmp/nvm.sh https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh
+  bash /tmp/nvm.sh
+  rm /tmp/nvm.sh
 
   if [ "${NODE_VERSION:-}" ]; then
     set +o nounset
@@ -156,11 +159,13 @@ RUN <<EOF
     set -o nounset
   fi
 
-  # Tool: composer > hirak/prestissimo
+  # Tool: composer v1 > hirak/prestissimo
   # ----------------------------------
   # enables parallel downloading of composer depedencies and massively speeds up the
   # time it takes to run composer install.
-  composer global require hirak/prestissimo
+  if dpkg --compare-versions "$COMPOSER_VERSION" lt 2.0; then
+    composer global require hirak/prestissimo
+  fi
 EOF
 
 USER root
