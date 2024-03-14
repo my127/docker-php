@@ -87,7 +87,6 @@ function clean()
 
     rm -rf /var/lib/apt/lists/*
 
-    pear clear-cache
     rm -rf /tmp/pear/
     rm -f /tmp/package.xml
 }
