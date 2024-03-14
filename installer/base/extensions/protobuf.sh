@@ -13,7 +13,10 @@ function compile_protobuf()
 {
     case "$VERSION" in
         7.*)
-            printf "\n" | pecl install protobuf-3.20.1
+            printf "\n" | pecl install protobuf-3.20.3
+            ;;
+        8.0)
+            printf "\n" | pecl install protobuf-3.25.3
             ;;
         *)
             printf "\n" | pecl install protobuf
