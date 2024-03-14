@@ -152,7 +152,9 @@ RUN <<EOF
     set +o nounset
     . /home/build/.nvm/nvm.sh
     nvm install "${NODE_VERSION}"
+    nvm cache clean
     npm install -g yarn
+    npm cache clear --force
     set -o nounset
   fi
 
@@ -161,6 +163,7 @@ RUN <<EOF
   # enables parallel downloading of composer depedencies and massively speeds up the
   # time it takes to run composer install.
   composer global require hirak/prestissimo
+  composer global clear-cache
 EOF
 
 USER root
