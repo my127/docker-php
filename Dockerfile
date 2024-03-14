@@ -163,7 +163,7 @@ RUN <<EOF
   # ----------------------------------
   # enables parallel downloading of composer depedencies and massively speeds up the
   # time it takes to run composer install.
-  if [ "${COMPOSER_VERSION:0:2}" = "1." ]; then
+  if dpkg --compare-versions "$COMPOSER_VERSION" lt 2.0; then
     composer global require hirak/prestissimo
   fi
 EOF
