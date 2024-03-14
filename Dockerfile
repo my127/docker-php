@@ -152,7 +152,7 @@ RUN <<EOF
     set +o nounset
     . /home/build/.nvm/nvm.sh
     nvm install "${NODE_VERSION}"
-    nvm cache clean
+    nvm cache clear
     npm install -g yarn
     npm cache clear --force
     set -o nounset
