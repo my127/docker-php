@@ -86,6 +86,9 @@ function clean()
     apt-get clean
 
     rm -rf /var/lib/apt/lists/*
+
+    rm -rf /tmp/pear/
+    rm -f /tmp/package.xml
 }
 
 function install()

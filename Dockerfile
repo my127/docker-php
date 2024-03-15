@@ -155,7 +155,9 @@ RUN <<EOF
     set +o nounset
     . /home/build/.nvm/nvm.sh
     nvm install "${NODE_VERSION}"
+    nvm cache clear
     npm install -g yarn
+    npm cache clear --force
     set -o nounset
   fi
 
@@ -165,6 +167,7 @@ RUN <<EOF
   # time it takes to run composer install.
   if dpkg --compare-versions "$COMPOSER_VERSION" lt 2.0; then
     composer global require hirak/prestissimo
+    composer global clear-cache
   fi
 EOF
 
