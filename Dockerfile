@@ -168,6 +168,10 @@ RUN <<EOF
   if dpkg --compare-versions "$COMPOSER_VERSION" lt 2.0; then
     composer global require hirak/prestissimo
     composer global clear-cache
+  else
+    # workaround to make 'composer global remove ...' not fail when it can't fine this file
+    mkdir ~/.composer
+    echo '{}' > ~/.composer/composer.json
   fi
 EOF
 
