@@ -9,6 +9,17 @@ pipeline {
     }
     triggers { cron(env.BRANCH_NAME ==~ /^main$/ ? 'H H(0-6) 1 * *' : '') }
     stages {
+        stage('Quality Checks') {
+            agent { label 'my127ws' }
+            steps {
+                sh './quality.sh'
+            }
+            post {
+                always {
+                    cleanWs()
+                }
+            }
+        }
         stage('Matrix') {
             matrix {
                 axes {

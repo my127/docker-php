@@ -47,5 +47,5 @@ for extension in extensions/*.sh; do
 done
 
 after="$(php -m)$(php -v)"
-echo "After: $after\nDiff:"
+printf "After: %s\nDiff:" "$after"
 diff -u <(echo "$before") <(echo "$after") || true
