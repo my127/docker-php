@@ -1,60 +1,12 @@
-version: '3'
-
 services:
-
   # Base Images
-  php73-fpm-buster-base:
-    image: my127/php:7.3-fpm-buster${TAG_SUFFIX:-}
-    build:
-      context: ./
-      target: base
-      args:
-        VERSION: '7.3'
-        BASEOS: buster
-
-  php74-fpm-buster-base:
-    image: my127/php:7.4-fpm-buster${TAG_SUFFIX:-}
-    build:
-      context: ./
-      target: base
-      args:
-        VERSION: '7.4'
-        BASEOS: buster
-
-  php74-fpm-bullseye-base:
-    image: my127/php:7.4-fpm-bullseye${TAG_SUFFIX:-}
-    build:
-      context: ./
-      target: base
-      args:
-        VERSION: '7.4'
-        BASEOS: bullseye
-
-  php80-fpm-buster-base:
-    image: my127/php:8.0-fpm-buster${TAG_SUFFIX:-}
-    build:
-      context: ./
-      target: base
-      args:
-        VERSION: '8.0'
-        BASEOS: buster
-
-  php80-fpm-bullseye-base:
-    image: my127/php:8.0-fpm-bullseye${TAG_SUFFIX:-}
-    build:
-      context: ./
-      target: base
-      args:
-        VERSION: '8.0'
-        BASEOS: bullseye
-
   php81-fpm-bullseye-base:
     image: my127/php:8.1-fpm-bullseye${TAG_SUFFIX:-}
     build:
       context: ./
       target: base
       args:
-        VERSION: '8.1'
+        VERSION: "8.1"
         BASEOS: bullseye
 
   php81-fpm-bookworm-base:
@@ -63,7 +15,7 @@ services:
       context: ./
       target: base
       args:
-        VERSION: '8.1'
+        VERSION: "8.1"
         BASEOS: bookworm
 
   php82-fpm-bullseye-base:
@@ -72,7 +24,7 @@ services:
       context: ./
       target: base
       args:
-        VERSION: '8.2'
+        VERSION: "8.2"
         BASEOS: bullseye
 
   php82-fpm-bookworm-base:
@@ -81,7 +33,7 @@ services:
       context: ./
       target: base
       args:
-        VERSION: '8.2'
+        VERSION: "8.2"
         BASEOS: bookworm
 
   php83-fpm-bookworm-base:
@@ -90,76 +42,30 @@ services:
       context: ./
       target: base
       args:
-        VERSION: '8.3'
-        REDIS_VERSION: '7.2'
+        VERSION: "8.3"
+        REDIS_VERSION: "7.2"
+        BASEOS: bookworm
+
+  php84-fpm-bookworm-base:
+    image: my127/php:8.4-fpm-bookworm${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: base
+      args:
+        VERSION: "8.4"
+        REDIS_VERSION: "7.4"
         BASEOS: bookworm
 
   # Console Images
-
-  php73-fpm-buster-console:
-    image: my127/php:7.3-fpm-buster-console${TAG_SUFFIX:-}
-    build:
-      context: ./
-      target: console
-      args:
-        VERSION: '7.3'
-        COMPOSER_VERSION: '1.10.27'
-        NODE_VERSION: '10'
-        BASEOS: buster
-
-  php74-fpm-buster-console:
-    image: my127/php:7.4-fpm-buster-console${TAG_SUFFIX:-}
-    build:
-      context: ./
-      target: console
-      args:
-        VERSION: '7.4'
-        COMPOSER_VERSION: '1.10.27'
-        NODE_VERSION: '10'
-        BASEOS: buster
-
-  php74-fpm-bullseye-console:
-    image: my127/php:7.4-fpm-bullseye-console${TAG_SUFFIX:-}
-    build:
-      context: ./
-      target: console
-      args:
-        VERSION: '7.4'
-        COMPOSER_VERSION: '1.10.27'
-        NODE_VERSION: '10'
-        BASEOS: bullseye
-
-  php80-fpm-buster-console:
-    image: my127/php:8.0-fpm-buster-console${TAG_SUFFIX:-}
-    build:
-      context: ./
-      target: console
-      args:
-        VERSION: '8.0'
-        COMPOSER_VERSION: '1.10.27'
-        NODE_VERSION: '10'
-        BASEOS: buster
-
-  php80-fpm-bullseye-console:
-    image: my127/php:8.0-fpm-bullseye-console${TAG_SUFFIX:-}
-    build:
-      context: ./
-      target: console
-      args:
-        VERSION: '8.0'
-        COMPOSER_VERSION: '1.10.27'
-        NODE_VERSION: '10'
-        BASEOS: bullseye
-
   php81-fpm-bullseye-console:
     image: my127/php:8.1-fpm-bullseye-console${TAG_SUFFIX:-}
     build:
       context: ./
       target: console
       args:
-        VERSION: '8.1'
-        COMPOSER_VERSION: '1.10.27'
-        NODE_VERSION: '10'
+        VERSION: "8.1"
+        COMPOSER_VERSION: "2.8.12"
+        NODE_VERSION: "10"
         BASEOS: bullseye
 
   php81-fpm-bookworm-console:
@@ -168,9 +74,9 @@ services:
       context: ./
       target: console
       args:
-        VERSION: '8.1'
-        COMPOSER_VERSION: '1.10.27'
-        NODE_VERSION: '10'
+        VERSION: "8.1"
+        COMPOSER_VERSION: "2.8.12"
+        NODE_VERSION: "10"
         BASEOS: bookworm
 
   php82-fpm-bullseye-console:
@@ -179,9 +85,9 @@ services:
       context: ./
       target: console
       args:
-        VERSION: '8.2'
-        COMPOSER_VERSION: '1.10.27'
-        NODE_VERSION: '10'
+        VERSION: "8.2"
+        COMPOSER_VERSION: "2.8.12"
+        NODE_VERSION: "10"
         BASEOS: bullseye
 
   php82-fpm-bookworm-console:
@@ -190,9 +96,9 @@ services:
       context: ./
       target: console
       args:
-        VERSION: '8.2'
-        COMPOSER_VERSION: '1.10.27'
-        NODE_VERSION: '10'
+        VERSION: "8.2"
+        COMPOSER_VERSION: "2.8.12"
+        NODE_VERSION: "10"
         BASEOS: bookworm
 
   php83-fpm-bookworm-console:
@@ -201,7 +107,18 @@ services:
       context: ./
       target: console
       args:
-        VERSION: '8.3'
-        COMPOSER_VERSION: '2.7.2'
-        REDIS_VERSION: '7.2'
+        VERSION: "8.3"
+        COMPOSER_VERSION: "2.8.12"
+        REDIS_VERSION: "7.2"
+        BASEOS: bookworm
+
+  php84-fpm-bookworm-console:
+    image: my127/php:8.4-fpm-bookworm-console${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: console
+      args:
+        VERSION: "8.4"
+        COMPOSER_VERSION: "2.8.12"
+        REDIS_VERSION: "7.4"
         BASEOS: bookworm

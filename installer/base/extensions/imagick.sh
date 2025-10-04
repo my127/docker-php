@@ -17,18 +17,7 @@ function compile_imagick()
     _imagick_deps_build
     _imagick_deps_runtime
 
-    set -e
-    cd /tmp/
-    pecl download imagick-3.7.0
-    tar -xzf imagick*.tgz
-    cd /tmp/imagick-*/
-    patch -p1 < /root/installer/extensions/patches/imagick-preprocessor-fix.patch
-    phpize
-    ./configure
-    make
-    make install
-    cd /root/installer
-    rm -rf /tmp/imagick*
+    printf "\n" | pecl install imagick
 
     if [ -z "$KEEP_DEPS" ]; then
         _imagick_clean_runtime
