@@ -15,14 +15,7 @@ function compile_event()
 {
     _event_deps_build
 
-    local PACKAGE_NAME="event"
-    case "$VERSION" in
-        "8.0")
-            PACKAGE_NAME="event-3.0.2"
-            ;;
-    esac
-
-    if ! printf "\n" | pecl install "$PACKAGE_NAME"; then
+    if ! printf "\n" | pecl install event; then
         return 1
     fi
 
