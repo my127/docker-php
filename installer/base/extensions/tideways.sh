@@ -27,10 +27,6 @@ function _tideways_deps_runtime()
 
 function _tideways_deps_build()
 {
-    install \
-      apt-transport-https \
-      gnupg2
-
     curl --fail --silent --show-error --location --output /usr/share/keyrings/tideways.asc 'https://packages.tideways.com/key.gpg'
     echo 'deb [signed-by=/usr/share/keyrings/tideways.asc] https://packages.tideways.com/apt-packages-main any-version main' > /etc/apt/sources.list.d/tideways.list
     apt-get update -qq
