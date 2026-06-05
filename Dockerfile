@@ -47,7 +47,6 @@ RUN cd /root/installer; ./enable.sh \
   bcmath \
   gd \
   intl \
-  "$(dpkg --compare-versions "$PHP_VERSION" ge 8.3 || echo mcrypt )" \
   opcache \
   pdo_mysql \
   pdo_pgsql \
