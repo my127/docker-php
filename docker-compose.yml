@@ -62,7 +62,7 @@ services:
       target: console
       args:
         VERSION: "8.2"
-        COMPOSER_VERSION: "2.8.12"
+        COMPOSER_VERSION: "2.10.1"
         NODE_VERSION: "10"
         REDIS_VERSION: "6.2"
         BASEOS: bullseye
@@ -74,7 +74,7 @@ services:
       target: console
       args:
         VERSION: "8.2"
-        COMPOSER_VERSION: "2.8.12"
+        COMPOSER_VERSION: "2.10.1"
         NODE_VERSION: "10"
         REDIS_VERSION: "6.2"
         BASEOS: bookworm
@@ -86,8 +86,8 @@ services:
       target: console
       args:
         VERSION: "8.3"
-        COMPOSER_VERSION: "2.8.12"
-        REDIS_VERSION: "7.2"
+        COMPOSER_VERSION: "2.10.1"
+        REDIS_VERSION: "7.4"
         BASEOS: bookworm
 
   php83-fpm-trixie-console:
@@ -97,8 +97,8 @@ services:
       target: console
       args:
         VERSION: "8.3"
-        COMPOSER_VERSION: "2.8.12"
-        REDIS_VERSION: "8.2"
+        COMPOSER_VERSION: "2.10.1"
+        REDIS_VERSION: "8.8"
         BASEOS: trixie
 
   php84-fpm-bookworm-console:
@@ -108,7 +108,7 @@ services:
       target: console
       args:
         VERSION: "8.4"
-        COMPOSER_VERSION: "2.8.12"
+        COMPOSER_VERSION: "2.10.1"
         REDIS_VERSION: "7.4"
         BASEOS: bookworm
 
@@ -119,6 +119,6 @@ services:
       target: console
       args:
         VERSION: "8.4"
-        COMPOSER_VERSION: "2.8.12"
-        REDIS_VERSION: "8.2"
+        COMPOSER_VERSION: "2.10.1"
+        REDIS_VERSION: "8.8"
         BASEOS: trixie
