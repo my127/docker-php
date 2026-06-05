@@ -1,12 +1,13 @@
 # syntax=docker/dockerfile:1.4
-ARG VERSION=7.3
-ARG BASEOS=bullseye
-ARG REDIS_VERSION=6.2
+ARG VERSION
+ARG BASEOS
+# The redis version is only used in the console image but needs a default value to avoid failing base image
+ARG REDIS_VERSION=invalid
 FROM php:${VERSION}-fpm-${BASEOS} as base
 
 # Base Packages
 # ---
-ARG BASEOS=bullseye
+ARG BASEOS
 ENV IMAGE_TYPE=base
 RUN <<EOF
   set -o errexit

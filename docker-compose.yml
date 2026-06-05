@@ -7,7 +7,6 @@ services:
       target: base
       args:
         VERSION: "8.3"
-        REDIS_VERSION: "7.2"
         BASEOS: bookworm
 
   php84-fpm-bookworm-base:
@@ -17,7 +16,6 @@ services:
       target: base
       args:
         VERSION: "8.4"
-        REDIS_VERSION: "7.4"
         BASEOS: bookworm
 
   # Console Images
