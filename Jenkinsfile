@@ -14,7 +14,7 @@ pipeline {
                 axes {
                     axis {
                         name 'BUILD'
-                        values 'php83', 'php84'
+                        values 'php82', 'php83', 'php84'
                     }
                     axis {
                         name 'PLATFORM'

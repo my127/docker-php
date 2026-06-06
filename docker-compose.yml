@@ -1,5 +1,23 @@
 services:
   # Base Images
+  php82-fpm-bullseye-base:
+    image: my127/php:8.2-fpm-bullseye${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: base
+      args:
+        VERSION: "8.2"
+        BASEOS: bullseye
+
+  php82-fpm-bookworm-base:
+    image: my127/php:8.2-fpm-bookworm${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: base
+      args:
+        VERSION: "8.2"
+        BASEOS: bookworm
+
   php83-fpm-bookworm-base:
     image: my127/php:8.3-fpm-bookworm${TAG_SUFFIX:-}
     build:
@@ -19,6 +37,30 @@ services:
         BASEOS: bookworm
 
   # Console Images
+  php82-fpm-bullseye-console:
+    image: my127/php:8.2-fpm-bullseye-console${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: console
+      args:
+        VERSION: "8.2"
+        COMPOSER_VERSION: "2.8.12"
+        NODE_VERSION: "10"
+        REDIS_VERSION: "6.2"
+        BASEOS: bullseye
+
+  php82-fpm-bookworm-console:
+    image: my127/php:8.2-fpm-bookworm-console${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: console
+      args:
+        VERSION: "8.2"
+        COMPOSER_VERSION: "2.8.12"
+        NODE_VERSION: "10"
+        REDIS_VERSION: "6.2"
+        BASEOS: bookworm
+
   php83-fpm-bookworm-console:
     image: my127/php:8.3-fpm-bookworm-console${TAG_SUFFIX:-}
     build:

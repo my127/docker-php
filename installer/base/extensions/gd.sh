@@ -27,11 +27,16 @@ function compile_gd()
 
 function _gd_deps_runtime()
 {
+    local WEBP_PACKAGE=libwebp7
+    if [ "$BASEOS" = bullseye ]; then
+      WEBP_PACKAGE=libwebp6
+    fi
+
     install \
       libfreetype6 \
       libjpeg62-turbo \
       libpng16-16 \
-      libwebp7 \
+      "$WEBP_PACKAGE" \
       libxpm4 \
       zlib1g
 }
