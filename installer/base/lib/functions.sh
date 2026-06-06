@@ -52,6 +52,39 @@ function compile()
     fi
 }
 
+function available()
+{
+    local extension="$1"
+    local installer_file="extensions/${extension}.sh"
+    local available_name="available_${extension}"
+
+    if [ -f "$installer_file" ]; then
+        # shellcheck source=../extensions/$installer_file
+        declare -F "$available_name" &>/dev/null || source "$installer_file"
+        if declare -F "$available_name" &>/dev/null; then
+            "$available_name"
+            return "$?"
+        fi
+    fi
+
+    return 0
+}
+
+function list_available()
+{
+    local extension
+    local extension_name
+    for extension in extensions/*.sh
+    do
+        extension_name="${extension%.sh}"
+        extension_name="${extension_name#extensions/}"
+
+        if available "$extension_name"; then
+            echo "$extension_name"
+        fi
+    done
+}
+
 function has_extension()
 {
     local EXTENSION="$1"
@@ -99,4 +132,8 @@ function install()
 function remove()
 {
     DEBIAN_FRONTEND=noninteractive apt-get -y --purge remove "$@"
+}
+
+function version_compare() {
+    dpkg --compare-versions "$@"
 }

@@ -10,15 +10,16 @@ source ./lib/functions.sh
 
 function main()
 {
+    local available_extensions
+    local extension
     local KEEPALIVE_PID
-    for extension in extensions/*.sh
+    mapfile -t available_extensions < <(list_available)
+    for extension in "${available_extensions[@]}"
     do
-        extension_name="${extension%.sh}"
-        extension_name="${extension_name#extensions/}"
         echo -n "Installing ${extension}..."
         bash -c 'for i in {0..40}; do sleep 30 && echo -n "."; done' &
         KEEPALIVE_PID="$!"
-        if ! compile "$extension_name" > /tmp/ext-install.log 2>&1; then
+        if ! compile "$extension" > /tmp/ext-install.log 2>&1; then
             echo " failure"
             cat /tmp/ext-install.log
             kill "$KEEPALIVE_PID" || true
@@ -33,7 +34,7 @@ function main()
     fi
 }
 
-VERSION="$(echo "$PHP_VERSION" | cut -c 1-3)"
+VERSION="$(echo "$PHP_VERSION" | cut -d. -f1-2)"
 export VERSION
 
 bootstrap

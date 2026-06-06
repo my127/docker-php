@@ -4,39 +4,36 @@ set -e
 
 cd /root/installer/
 
-function version_compare() {
-    dpkg --compare-versions "$@"
-}
+source ./lib/functions.sh
 
 before="$(php -m)$(php -v)"
 echo "Before: $before"
 
-for extension in extensions/*.sh; do
+mapfile -t available_extensions < <(list_available)
+for extension in "${available_extensions[@]}"; do
     echo -n "Installing ${extension}..."
-    extension_name="${extension%.sh}"
-    extension_name="${extension_name#extensions/}"
 
     # NewRelic PHP agent is currently not supporting other architectures than x86_64 / amd64
-    if  [ "$extension_name" = 'newrelic' ] && [ "$(uname -m)" != x86_64 ]; then
+    if  [ "$extension" = 'newrelic' ] && [ "$(uname -m)" != x86_64 ]; then
         echo ' skipped'
         continue
     fi
 
-    if ! ./enable.sh "$extension_name" > /tmp/ext-install.log 2>&1; then
+    if ! ./enable.sh "$extension" > /tmp/ext-install.log 2>&1; then
         echo ' failure'
         cat /tmp/ext-install.log
         exit 1
     fi
 
     # These extensions aren't enabled by default
-    if [ "$extension_name" = 'blackfire' ] || [ "$extension_name" = "newrelic" ] || [ "$extension_name" = 'tideways' ]; then
+    if [ "$extension" = 'blackfire' ] || [ "$extension" = "newrelic" ] || [ "$extension" = 'tideways' ]; then
         echo ' success'
         continue
     fi
-    if [ "$extension_name" = "opcache" ]; then
-        extension_name='Zend OPcache'
+    if [ "$extension" = "opcache" ]; then
+        extension='Zend OPcache'
     fi
-    if php -m | grep -i -q "^$extension_name\$"; then
+    if php -m | grep -i -q "^$extension\$"; then
         echo ' success'
         continue
     fi

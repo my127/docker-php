@@ -9,6 +9,7 @@ source ./lib/functions.sh
 
 function main()
 {
+    local extension
     for extension in "$@"
     do
         compile "$extension"
@@ -16,7 +17,7 @@ function main()
     done
 }
 
-VERSION="$(echo "$PHP_VERSION" | cut -c 1-3)"
+VERSION="$(echo "$PHP_VERSION" | cut -d. -f1-2)"
 export VERSION
 
 bootstrap
