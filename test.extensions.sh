@@ -16,12 +16,6 @@ for extension in extensions/*.sh; do
     extension_name="${extension%.sh}"
     extension_name="${extension_name#extensions/}"
 
-    # NewRelic PHP agent is currently not supporting other architectures than x86_64 / amd64
-    if  [ "$extension_name" = 'newrelic' ] && [ "$(uname -m)" != x86_64 ]; then
-        echo ' skipped'
-        continue
-    fi
-
     if ! ./enable.sh "$extension_name" > /tmp/ext-install.log 2>&1; then
         echo ' failure'
         cat /tmp/ext-install.log
