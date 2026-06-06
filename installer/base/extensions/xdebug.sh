@@ -13,13 +13,5 @@ function compile_xdebug()
 (
     set -o errexit -o pipefail
 
-    case "$VERSION" in
-            7.*)
-                XDEBUG_PACKAGE="xdebug-2.9.8"
-                printf "\n" | pecl install "$XDEBUG_PACKAGE"
-                ;;
-            *)
-                XDEBUG_PACKAGE="xdebug"
-                printf "\n" | pecl install "$XDEBUG_PACKAGE"
-    esac
+    printf "\n" | pecl install xdebug
 )
