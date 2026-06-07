@@ -52,10 +52,11 @@ Used in development for building and interacting with the application with a fam
 
 ## Supported Versions
 
-| PHP version | Bookworm | Trixie |
-| --- | --- | --- |
-| `8.3` | Base + Console | Base + Console |
-| `8.4` | Base + Console | Base + Console |
+| PHP version | Bullseye | Bookworm | Trixie |
+| ----------- | -------- | -------- | ------ |
+| `8.2`       | x        | x        |
+| `8.3`       |          | x        | x      |
+| `8.4`       |          | x        | x      |
 
 ## Build and Test
 
