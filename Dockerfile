@@ -122,9 +122,9 @@ RUN <<EOF
 
   # Tool: composer
   # --------------
-  curl --fail --silent --show-error --location --retry 3 --output /tmp/composer-installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/993f9fec74930f32f7015e71543243bf6d9b9e93/web/installer
+  curl --fail --silent --show-error --location --retry 3 --output /tmp/composer-installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/385045ba212b5b73c1710fe6228ef024007d0a73/web/installer
   php -r '
-    $signature = "dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6";
+    $signature = "c8b085408188070d5f52bcfe4ecfbee5f727afa458b2573b8eaaf77b3419b0bf2768dc67c86944da1544f06fa544fd47";
     $hash = hash("sha384", file_get_contents("/tmp/composer-installer.php"));
     if (!hash_equals($signature, $hash)) {
         unlink("/tmp/composer-installer.php");
@@ -161,18 +161,11 @@ RUN <<EOF
     set -o nounset
   fi
 
-  # Tool: composer v1 > hirak/prestissimo
+  # Tool: composer
   # ----------------------------------
-  # enables parallel downloading of composer depedencies and massively speeds up the
-  # time it takes to run composer install.
-  if dpkg --compare-versions "$COMPOSER_VERSION" lt 2.0; then
-    composer global require hirak/prestissimo
-    composer global clear-cache
-  else
-    # workaround to make 'composer global remove ...' not fail when it can't fine this file
-    mkdir ~/.composer
-    echo '{}' > ~/.composer/composer.json
-  fi
+  # workaround to make 'composer global remove ...' not fail when it can't fine this file
+  mkdir ~/.composer
+  echo '{}' > ~/.composer/composer.json
 EOF
 
 USER root

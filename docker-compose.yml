@@ -27,6 +27,15 @@ services:
         VERSION: "8.3"
         BASEOS: bookworm
 
+  php83-fpm-trixie-base:
+    image: my127/php:8.3-fpm-trixie${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: base
+      args:
+        VERSION: "8.3"
+        BASEOS: trixie
+
   php84-fpm-bookworm-base:
     image: my127/php:8.4-fpm-bookworm${TAG_SUFFIX:-}
     build:
@@ -36,6 +45,15 @@ services:
         VERSION: "8.4"
         BASEOS: bookworm
 
+  php84-fpm-trixie-base:
+    image: my127/php:8.4-fpm-trixie${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: base
+      args:
+        VERSION: "8.4"
+        BASEOS: trixie
+
   # Console Images
   php82-fpm-bullseye-console:
     image: my127/php:8.2-fpm-bullseye-console${TAG_SUFFIX:-}
@@ -44,7 +62,7 @@ services:
       target: console
       args:
         VERSION: "8.2"
-        COMPOSER_VERSION: "2.8.12"
+        COMPOSER_VERSION: "2.10.1"
         NODE_VERSION: "10"
         REDIS_VERSION: "6.2"
         BASEOS: bullseye
@@ -56,7 +74,7 @@ services:
       target: console
       args:
         VERSION: "8.2"
-        COMPOSER_VERSION: "2.8.12"
+        COMPOSER_VERSION: "2.10.1"
         NODE_VERSION: "10"
         REDIS_VERSION: "6.2"
         BASEOS: bookworm
@@ -68,9 +86,20 @@ services:
       target: console
       args:
         VERSION: "8.3"
-        COMPOSER_VERSION: "2.8.12"
-        REDIS_VERSION: "7.2"
+        COMPOSER_VERSION: "2.10.1"
+        REDIS_VERSION: "7.4"
         BASEOS: bookworm
+
+  php83-fpm-trixie-console:
+    image: my127/php:8.3-fpm-trixie-console${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: console
+      args:
+        VERSION: "8.3"
+        COMPOSER_VERSION: "2.10.1"
+        REDIS_VERSION: "8.8"
+        BASEOS: trixie
 
   php84-fpm-bookworm-console:
     image: my127/php:8.4-fpm-bookworm-console${TAG_SUFFIX:-}
@@ -79,6 +108,17 @@ services:
       target: console
       args:
         VERSION: "8.4"
-        COMPOSER_VERSION: "2.8.12"
+        COMPOSER_VERSION: "2.10.1"
         REDIS_VERSION: "7.4"
         BASEOS: bookworm
+
+  php84-fpm-trixie-console:
+    image: my127/php:8.4-fpm-trixie-console${TAG_SUFFIX:-}
+    build:
+      context: ./
+      target: console
+      args:
+        VERSION: "8.4"
+        COMPOSER_VERSION: "2.10.1"
+        REDIS_VERSION: "8.8"
+        BASEOS: trixie

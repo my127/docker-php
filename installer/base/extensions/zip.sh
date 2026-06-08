@@ -22,6 +22,10 @@ function compile_zip()
 
 function _zip_deps_runtime()
 {
+    if [ "${BASEOS}" = "trixie" ]; then
+        install libzip5
+        return
+    fi
     install libzip4
 }
 
