@@ -54,9 +54,10 @@ Used in development for building and interacting with the application with a fam
 
 | PHP version | Bullseye | Bookworm | Trixie |
 | ----------- | -------- | -------- | ------ |
-| `8.2`       | x        | x        |
+| `8.2`       | x        | x        |        |
 | `8.3`       |          | x        | x      |
 | `8.4`       |          | x        | x      |
+| `8.5`       |          |          | x      |
 
 ## Build and Test
 
@@ -65,34 +66,26 @@ Build and test all Trixie images:
 ```bash
 BUILD=trixie ./build.sh
 BUILD=trixie ./test.sh
-docker image rm \
-  my127/php:8.3-fpm-trixie \
-  my127/php:8.3-fpm-trixie-console \
-  my127/php:8.4-fpm-trixie \
-  my127/php:8.4-fpm-trixie-console
+docker compose down --rmi=all
 ```
 
-Build and test all PHP 8.4 images:
+Build and test all PHP 8.5 images:
 
 ```bash
-BUILD=php84 ./build.sh
-BUILD=php84 ./test.sh
-docker image rm \
-  my127/php:8.4-fpm-bookworm \
-  my127/php:8.4-fpm-bookworm-console \
-  my127/php:8.4-fpm-trixie \
-  my127/php:8.4-fpm-trixie-console
+BUILD=php85 ./build.sh
+BUILD=php85 ./test.sh
+docker compose down --rmi=all
 ```
 
 Build and test a single image:
 
 ```bash
-BUILD=php84-fpm-trixie-console ./build.sh
-BUILD=php84-fpm-trixie-console ./test.sh
+BUILD=php85-fpm-trixie-console ./build.sh
+BUILD=php85-fpm-trixie-console ./test.sh
 ```
 
 Remove locally built images when finished:
 
 ```bash
-docker image rm my127/php:8.4-fpm-trixie-console
+docker image rm my127/php:8.5-fpm-trixie-console
 ```
