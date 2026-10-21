@@ -14,7 +14,7 @@ pipeline {
                 axes {
                     axis {
                         name 'BUILD'
-                        values 'php82|php83', 'php84|php85'
+                        values 'php82|php83|php84|php85'
                     }
                     axis {
                         name 'PLATFORM'
@@ -26,7 +26,7 @@ pipeline {
                 }
                 stages {
                     stage('Build, Test, Publish') {
-                        agent { label "${PLATFORM}" }
+                        agent { label "${PLATFORM}-preview" }
                         stages {
                             stage('Build') {
                                 steps {
@@ -67,7 +67,7 @@ pipeline {
             }
         }
         stage('Publish main image') {
-            agent { label "linux-amd64" }
+            agent { label "linux-amd64-preview" }
             environment {
                 DOCKER_REGISTRY_CREDS = credentials('docker-registry-credentials')
             }

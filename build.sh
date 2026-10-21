@@ -6,4 +6,4 @@ BUILD="${BUILD:-}"
 
 SERVICES=($(docker-compose config --services | grep -E "${BUILD}"))
 
-docker-compose build "${SERVICES[@]}"
+docker-compose build --pull "${SERVICES[@]}"
